@@ -8,14 +8,14 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        mono: ['"JetBrans Mono"', 'monospace'],
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
                     },
                     colors: {
                         matrix: {
@@ -61,21 +61,6 @@
             scroll-behavior: smooth;
         }
         /* Global Overlays */
-        .crt-overlay {
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%,
-                rgba(0, 0, 0, 0.25) 50%
-            ), linear-gradient(
-                90deg,
-                rgba(255, 0, 0, 0.06),
-                rgba(0, 255, 0, 0.02),
-                rgba(0, 0, 255, 0.06)
-            );
-            background-size: 100% 4px, 6px 100%;
-            z-index: 50;
-            pointer-events: none;
-        }
-
         .vignette {
             background: radial-gradient(
                 circle at center,
@@ -84,6 +69,60 @@
             );
             z-index: 10;
             pointer-events: none;
+        }
+        /* Aurora / Green Glow Background */
+        .aurora-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            will-change: transform;
+        }
+        .aurora-blob--1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0,180,60,0.6) 0%, transparent 70%);
+            top: -10%;
+            left: 10%;
+            animation: auroraFloat1 18s ease-in-out infinite alternate;
+        }
+        .aurora-blob--2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,220,80,0.5) 0%, transparent 70%);
+            top: 40%;
+            right: -5%;
+            animation: auroraFloat2 22s ease-in-out infinite alternate;
+        }
+        .aurora-blob--3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(0,160,50,0.4) 0%, transparent 70%);
+            bottom: -5%;
+            left: 30%;
+            animation: auroraFloat3 20s ease-in-out infinite alternate;
+        }
+        @keyframes auroraFloat1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(80px, 60px) scale(1.15); }
+            100% { transform: translate(-40px, 120px) scale(0.95); }
+        }
+        @keyframes auroraFloat2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-100px, -50px) scale(1.1); }
+            100% { transform: translate(50px, -80px) scale(1.05); }
+        }
+        @keyframes auroraFloat3 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, -70px) scale(1.2); }
+            100% { transform: translate(-80px, 30px) scale(0.9); }
         }
         /* Typography Utilities */
         .text-glow-matrix {
@@ -208,21 +247,21 @@
         /* PAIN POINTS SECTION STYLES */
         .pain-card {
             position: relative;
-            background: rgba(10, 10, 15, 0.65);
-            border: 1px solid rgba(255, 0, 85, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
             isolation: isolate;
         }
         .pain-card:hover {
-            border-color: rgba(255, 0, 85, 0.7);
+            border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-8px) scale(1.02);
             box-shadow:
                 0 15px 30px -5px rgba(0, 0, 0, 0.8),
-                0 0 20px rgba(255, 0, 85, 0.2),
-                inset 0 0 15px rgba(255, 0, 85, 0.1);
+                0 0 20px rgba(0, 200, 60, 0.1),
+                inset 0 0 15px rgba(255, 255, 255, 0.03);
             z-index: 20;
         }
         .pain-card::before,
@@ -295,21 +334,21 @@
         /* SOLUTION & BENEFITS SECTION STYLES */
         .process-node {
             position: relative;
-            background: rgba(5, 5, 10, 0.7);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
             isolation: isolate;
         }
         .process-node:hover {
-            border-color: rgba(0, 240, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-5px);
             box-shadow:
                 0 10px 30px -10px rgba(0, 0, 0, 0.9),
-                0 0 25px rgba(0, 240, 255, 0.2),
-                inset 0 0 15px rgba(0, 240, 255, 0.05);
+                0 0 25px rgba(0, 200, 60, 0.1),
+                inset 0 0 15px rgba(255, 255, 255, 0.03);
         }
         .process-node::before {
             content: '';
@@ -358,19 +397,20 @@
         }
         .benefit-card {
             position: relative;
-            background: linear-gradient(180deg, rgba(0, 255, 65, 0.05) 0%, rgba(5, 5, 5, 0.8) 100%);
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            border-top: 2px solid rgba(0, 255, 65, 0.5);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid rgba(0, 200, 60, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             transition: all 0.3s ease;
             overflow: hidden;
         }
         .benefit-card:hover {
-            border-color: rgba(0, 255, 65, 0.6);
-            border-top-color: #00FF41;
+            border-color: rgba(255, 255, 255, 0.2);
+            border-top-color: rgba(0, 200, 60, 0.5);
             box-shadow:
                 0 15px 30px rgba(0, 0, 0, 0.6),
-                0 0 20px rgba(0, 255, 65, 0.15);
+                0 0 20px rgba(0, 200, 60, 0.1);
             transform: translateY(-4px);
         }
         .benefit-holo-sweep {
@@ -387,16 +427,16 @@
         /* CASES SECTION STYLES */
         .case-card {
             position: relative;
-            background: rgba(5, 5, 10, 0.75);
-            border: 1px solid rgba(0, 255, 65, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .case-card:hover {
-            border-color: rgba(0, 255, 65, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-4px);
             box-shadow: 0 10px 40px rgba(0, 255, 65, 0.1), 0 0 20px rgba(0, 255, 65, 0.05);
         }
@@ -438,10 +478,10 @@
         /* PRICING SECTION STYLES */
         .pkg {
             position: relative;
-            background: rgba(5, 5, 10, 0.75);
-            border: 1px solid rgba(0, 255, 65, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -641,10 +681,22 @@
             background: rgba(0, 240, 255, 0.04);
         }
         .guarantee-block {
-            background: rgba(0, 255, 65, 0.04);
-            border: 1px solid rgba(0, 255, 65, 0.15);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: clamp(16px, 4vw, 24px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Pulsing Dot in Logo */
+        .pulsing-dot {
+            display: inline-block;
+            animation: dotPulse 2s ease-in-out infinite;
+            color: #00FF41;
+        }
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.4; text-shadow: 0 0 4px rgba(0,255,65,0.3); transform: scale(1); }
+            50% { opacity: 1; text-shadow: 0 0 16px rgba(0,255,65,0.9), 0 0 30px rgba(0,255,65,0.4); transform: scale(1.2); }
         }
         /* Animated Elements - Cascade on Load */
         .section-animated-element {
@@ -652,16 +704,18 @@
         }
     </style>
 </head>
-<body class="font-mono selection:bg-matrix-DEFAULT selection:text-black">
+<body class="font-sans selection:bg-matrix-DEFAULT selection:text-black">
     <!-- Global Fixed Backgrounds -->
-    <canvas id="matrix-rain" class="fixed inset-0 z-0 w-full h-full opacity-60 pointer-events-none"></canvas>
+    <div class="aurora-bg">
+        <div class="aurora-blob aurora-blob--1"></div>
+        <div class="aurora-blob aurora-blob--2"></div>
+        <div class="aurora-blob aurora-blob--3"></div>
+    </div>
     <div class="fixed inset-0 vignette z-10 pointer-events-none"></div>
-    <div class="fixed inset-0 crt-overlay z-[60] pointer-events-none"></div>
     <!-- Global Fixed Header -->
     <header class="fixed top-6 left-6 md:top-10 md:left-10 z-[70]">
         <a href="#" id="logo-link" class="text-white flex items-baseline font-black text-2xl md:text-3xl tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-colors hover:scale-105 transform origin-left duration-300">
-            CONTENT.ZVD
-            <span class="inline-block w-2.5 h-2.5 rounded-full bg-white ml-2 animate-pulse-fast shadow-[0_0_10px_#FFFFFF]"></span>
+            Content<span class="pulsing-dot">.</span>ZVD
         </a>
     </header>
     <!-- Main Scroll Container -->
@@ -677,7 +731,7 @@
             <!-- Content Container -->
             <div class="relative z-40 w-full max-w-4xl px-6 flex flex-col items-center">
                 <!-- Terminal Text Box -->
-                <div class="w-full max-w-3xl mx-auto bg-gradient-to-t from-black via-black/60 to-transparent p-6 md:p-10 mb-12 min-h-[140px] md:min-h-[120px] flex items-center justify-center relative rounded-3xl backdrop-blur-[2px]">
+                <div class="w-full max-w-3xl mx-auto bg-white/[0.04] border border-white/10 p-6 md:p-10 mb-12 min-h-[140px] md:min-h-[120px] flex items-center justify-center relative rounded-3xl backdrop-blur-xl">
                     <p id="terminal-text" class="text-lg md:text-2xl lg:text-3xl text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-relaxed text-center font-black tracking-wide">
                         <span id="typed-hero"></span><span id="cursor-hero" class="inline-block w-3 md:w-4 h-6 md:h-8 bg-white ml-1 align-middle animate-pulse-fast shadow-[0_0_10px_#FFFFFF]"></span>
                     </p>
@@ -714,7 +768,7 @@
             <div class="w-full max-w-5xl mx-auto flex flex-col items-center gap-12 z-20">
 
                 <!-- Text Block -->
-                <div class="section-animated-element w-full bg-gradient-to-t from-black/90 via-black/70 to-black/40 border border-matrix-DEFAULT/20 rounded-3xl p-8 sm:p-10 md:p-16 backdrop-blur-md shadow-[0_0_50px_rgba(0,255,65,0.05)] relative overflow-hidden" style="animation-delay: 0s;">
+                <div class="section-animated-element w-full bg-white/[0.04] border border-white/10 rounded-3xl p-8 sm:p-10 md:p-16 backdrop-blur-xl shadow-[0_0_50px_rgba(0,200,60,0.05)] relative overflow-hidden" style="animation-delay: 0s;">
                     <div class="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-matrix-DEFAULT/50 to-transparent"></div>
                     <div class="flex flex-col gap-6 text-center">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
@@ -735,7 +789,7 @@
                 <!-- Action Area: Timer & Button -->
                 <div class="flex flex-col items-center gap-8 w-full">
                     <!-- Timer Box -->
-                    <div class="section-animated-element flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-black/80 border border-matrix-DEFAULT/30 px-6 sm:px-8 py-4 rounded-xl backdrop-blur-lg shadow-[0_0_20px_rgba(0,255,65,0.1)]" style="animation-delay: 0.2s;">
+                    <div class="section-animated-element flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white/[0.04] border border-white/10 px-6 sm:px-8 py-4 rounded-xl backdrop-blur-xl shadow-[0_0_20px_rgba(0,200,60,0.05)]" style="animation-delay: 0.2s;">
                         <div class="flex items-center gap-3">
                             <span class="relative flex h-3.5 w-3.5">
                               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-matrix-DEFAULT opacity-75"></span>
@@ -749,7 +803,7 @@
                         <div class="hidden sm:block w-px h-8 bg-matrix-DEFAULT/30"></div>
                         <div class="sm:hidden w-16 h-px bg-matrix-DEFAULT/30 my-1"></div>
                         <div class="flex flex-col items-center">
-                            <div id="timer-val" class="font-mono text-2xl sm:text-3xl font-black text-neon-blue tracking-widest drop-shadow-[0_0_12px_rgba(0,240,255,0.8)]">
+                            <div id="timer-val" class="text-2xl sm:text-3xl font-black text-neon-blue tracking-widest drop-shadow-[0_0_12px_rgba(0,240,255,0.8)]" style="font-variant-numeric: tabular-nums;">
                                 00:00:00
                             </div>
                             <span class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">До закриття броні</span>
@@ -1051,8 +1105,8 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="310 80" stroke-dashoffset="-20" opacity="0.4"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="80 310" stroke-dashoffset="-330" opacity="0.4"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="JetBrains Mono">Перегляди</text>
-                                        <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="16" font-weight="800" font-family="JetBrains Mono">345,477</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
+                                        <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="16" font-weight="800" font-family="Inter, sans-serif">345,477</text>
                                     </svg>
                                 </div>
                                 <div class="text-xs text-neon-red/80 font-bold mt-1">ДО</div>
@@ -1067,8 +1121,8 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="240 150" stroke-dashoffset="-20"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="150 240" stroke-dashoffset="-260"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="JetBrains Mono">Перегляди</text>
-                                        <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="JetBrains Mono">2,168,892</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
+                                        <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="Inter, sans-serif">2,168,892</text>
                                     </svg>
                                 </div>
                                 <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ПІСЛЯ</div>
@@ -1089,8 +1143,8 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="300 90" stroke-dashoffset="-20" opacity="0.4"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="90 300" stroke-dashoffset="-320" opacity="0.4"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="JetBrains Mono">Перегляди</text>
-                                        <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="JetBrains Mono">1,389,871</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
+                                        <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="Inter, sans-serif">1,389,871</text>
                                     </svg>
                                 </div>
                                 <div class="text-xs text-neon-red/80 font-bold mt-1">ДО</div>
@@ -1105,8 +1159,8 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="280 110" stroke-dashoffset="-20"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="110 280" stroke-dashoffset="-300"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="JetBrains Mono">Перегляди</text>
-                                        <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="JetBrains Mono">5,574,092</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
+                                        <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="Inter, sans-serif">5,574,092</text>
                                     </svg>
                                 </div>
                                 <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ПІСЛЯ</div>
@@ -1127,8 +1181,8 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="308 82" stroke-dashoffset="-20" opacity="0.4"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="82 308" stroke-dashoffset="-328" opacity="0.4"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="JetBrains Mono">Перегляди</text>
-                                        <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="JetBrains Mono">1,212,769</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
+                                        <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="Inter, sans-serif">1,212,769</text>
                                     </svg>
                                 </div>
                                 <div class="text-xs text-neon-red/80 font-bold mt-1">ДО</div>
@@ -1143,8 +1197,8 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="280 110" stroke-dashoffset="-20"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="110 280" stroke-dashoffset="-300"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="JetBrains Mono">Перегляди</text>
-                                        <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="JetBrains Mono">6,414,935</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
+                                        <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="Inter, sans-serif">6,414,935</text>
                                     </svg>
                                 </div>
                                 <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ПІСЛЯ</div>
@@ -1351,7 +1405,7 @@
             </div>
 
             <!-- Comparison Table -->
-            <div class="section-animated-element max-w-4xl mx-auto mt-14 bg-black/40 border border-white/5 rounded-2xl p-4 md:p-6 backdrop-blur-md overflow-x-auto" style="animation-delay: 0.7s;">
+            <div class="section-animated-element max-w-4xl mx-auto mt-14 bg-white/[0.04] border border-white/10 rounded-2xl p-4 md:p-6 backdrop-blur-xl overflow-x-auto" style="animation-delay: 0.7s;">
                 <h3 class="text-base md:text-lg font-black text-white mb-4 tracking-wide uppercase">Порівняння пакетів</h3>
                 <table class="compare-table">
                     <thead>
@@ -1432,7 +1486,7 @@
         <!-- Backdrop -->
         <div id="modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeBookingModal()"></div>
         <!-- Modal Card -->
-        <div class="relative w-full max-w-md bg-gradient-to-b from-gray-900/95 to-black/98 border border-matrix-DEFAULT/30 rounded-2xl p-8 shadow-[0_0_60px_rgba(0,255,65,0.1)] backdrop-blur-xl transform transition-all duration-300 scale-95 opacity-0" id="modal-card">
+        <div class="relative w-full max-w-md bg-white/[0.05] border border-white/10 rounded-2xl p-8 shadow-[0_0_60px_rgba(0,200,60,0.08)] backdrop-blur-2xl transform transition-all duration-300 scale-95 opacity-0" id="modal-card">
             <!-- Close Button -->
             <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-500 hover:text-white transition-colors">
                 <iconify-icon icon="lucide:x" width="20" height="20"></iconify-icon>
@@ -1505,60 +1559,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- 1. Global Matrix Rain Canvas ---
-            const canvas = document.getElementById('matrix-rain');
-            const ctx = canvas.getContext('2d');
-            let width, height, columns;
-            const drops = [];
-            const chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%";:?!\\|{}<>[]^~';
-            const charArray = chars.split('');
-            const fontSize = 16;
-
-            function initCanvas() {
-                width = window.innerWidth;
-                height = window.innerHeight;
-                canvas.width = width;
-                canvas.height = height;
-                columns = Math.floor(width / fontSize);
-                drops.length = 0;
-                for (let i = 0; i < columns; i++) {
-                    drops[i] = Math.random() * -100;
-                }
-                ctx.font = fontSize + 'px "JetBrains Mono", monospace';
-            }
-            function drawMatrix() {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-                ctx.fillRect(0, 0, width, height);
-                for (let i = 0; i < drops.length; i++) {
-                    const text = charArray[Math.floor(Math.random() * charArray.length)];
-                    const x = i * fontSize;
-                    const y = drops[i] * fontSize;
-                    const randomVal = Math.random();
-                    if (randomVal > 0.95) {
-                        ctx.fillStyle = '#FFFFFF';
-                        ctx.shadowBlur = 10;
-                        ctx.shadowColor = '#00FF41';
-                    } else if (randomVal > 0.7) {
-                        ctx.fillStyle = '#00FF41';
-                        ctx.shadowBlur = 5;
-                        ctx.shadowColor = '#00FF41';
-                    } else {
-                        ctx.fillStyle = '#008F11';
-                        ctx.shadowBlur = 0;
-                    }
-                    ctx.fillText(text, x, y);
-                    if (y > height && Math.random() > 0.975) drops[i] = 0;
-                    drops[i]++;
-                }
-                requestAnimationFrame(drawMatrix);
-            }
-            initCanvas();
-            requestAnimationFrame(drawMatrix);
-            window.addEventListener('resize', () => {
-                initCanvas();
-                ctx.fillStyle = '#000000';
-                ctx.fillRect(0, 0, width, height);
-            });
+            // --- 1. Background handled via CSS Aurora ---
             // --- 2. Animations handled via CSS Cascade ---
             // --- 3. Hero Section Typing (Immediate) ---
             const textToTypeHero = "Інста-алгоритм ігнорує тебе, але я пропоную вибір, який змінить усе.";
