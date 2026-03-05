@@ -33,7 +33,7 @@
                     },
                     animation: {
                         'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'spin-slow': 'pin 4s linear infinite',
+                        'spin-slow': 'spin 4s linear infinite',
                         'glow-pulse': 'glowPulse 3s ease-in-out infinite alternate',
                         'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                     },
@@ -468,7 +468,7 @@
             padding-left: 2rem;
         }
         .cases-check-item::before {
-            content: 'â';
+            content: '✔';
             position: absolute;
             left: 0;
             color: #00FF41;
@@ -703,7 +703,7 @@
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
     
-        /* FAQ Styles */
+        /* FAQ */
         .faq-item { background: rgba(5, 5, 10, 0.7); border: 1px solid rgba(0, 255, 65, 0.12); border-radius: 12px; overflow: hidden; transition: 0.3s; }
         .faq-item:hover { border-color: rgba(0, 255, 65, 0.3); }
         .faq-item.active { border-color: rgba(0, 255, 65, 0.4); box-shadow: 0 0 20px rgba(0, 255, 65, 0.06); }
@@ -783,15 +783,15 @@
                     <div class="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-matrix-DEFAULT/50 to-transparent"></div>
                     <div class="flex flex-col gap-6 text-center">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-                            ÐÐ¸ Ð½Ðµ Ð¿ÑÐ¾ÑÑÐ¾ ÑÐ¾Ð±Ð¸Ð¼Ð¾ Ð²ÑÑÑÑÐ½Ñ Reels Ð½Ð°
+                            Ми не просто робимо вірусні Reels на
                             <span class="block sm:inline mt-2 sm:mt-0 text-matrix-DEFAULT text-glow-matrix">
-                                Ð´ÐµÑÑÑÐºÐ¸ Ð¼ÑÐ»ÑÐ¹Ð¾Ð½ÑÐ² Ð¿ÐµÑÐµÐ³Ð»ÑÐ´ÑÐ².
+                                десятки мільйонів переглядів.
                             </span>
                         </h2>
                         <p class="text-xl sm:text-2xl md:text-3xl text-gray-300 font-bold tracking-wide leading-relaxed max-w-4xl mx-auto mt-4">
-                            ÐÐ¸ Ð½Ð°Ð²ÑÐ°ÑÐ¼Ð¾ Ð°Ð»Ð³Ð¾ÑÐ¸ÑÐ¼ Instagram
+                            Ми навчаємо алгоритм Instagram
                             <span class="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] relative whitespace-nowrap">
-                                Ð»ÑÐ±Ð¸ÑÐ¸ Ð²Ð°Ñ Ð°ÐºÐ°ÑÐ½Ñ
+                                любити ваш акаунт
                                 <span class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon-blue to-transparent opacity-80"></span>
                             </span>.
                         </p>
@@ -807,7 +807,7 @@
                               <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-matrix-DEFAULT shadow-[0_0_8px_#00FF41]"></span>
                             </span>
                             <span class="text-gray-300 font-bold text-sm sm:text-base tracking-wider uppercase">
-                                ÐÐ°Ð»Ð¸ÑÐ¸Ð»Ð¾ÑÑ Ð¼ÑÑÑÑ Ð½Ð° ÑÑÐ¾Ð³Ð¾Ð´Ð½Ñ:
+                                Залишилося місць на сьогодні:
                                 <span id="spots-val" class="text-neon-red text-xl sm:text-2xl ml-1 font-black drop-shadow-[0_0_8px_rgba(255,0,85,0.8)] text-glow-red">5</span>
                             </span>
                         </div>
@@ -817,7 +817,7 @@
                             <div id="timer-val" class="text-2xl sm:text-3xl font-black text-neon-blue tracking-widest drop-shadow-[0_0_12px_rgba(0,240,255,0.8)]" style="font-variant-numeric: tabular-nums;">
                                 00:00:00
                             </div>
-                            <span class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">ÐÐ¾ Ð·Ð°ÐºÑÐ¸ÑÑÑ Ð±ÑÐ¾Ð½Ñ</span>
+                            <span class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">До закриття броні</span>
                         </div>
                     </div>
                     <!-- Holographic Booking Button -->
@@ -830,7 +830,7 @@
                         <div class="absolute inset-[2px] rounded-full border border-white/20 z-10 pointer-events-none mix-blend-overlay"></div>
                         <div class="absolute top-[4px] left-[15%] w-[70%] h-2 bg-gradient-to-b from-white/40 to-transparent rounded-full blur-[1px] z-10 pointer-events-none"></div>
                         <span class="relative z-20 text-white font-black tracking-[0.15em] uppercase text-xl md:text-2xl group-hover:text-holo-red transition-all duration-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)]">
-                            ÐÐ°Ð±ÑÐ¾Ð½ÑÐ²Ð°ÑÐ¸
+                            Забронювати
                         </span>
                     </button>
                 </div>
@@ -849,7 +849,7 @@
                 </h3>
 
                 <p class="section-animated-element text-gray-400 text-lg md:text-xl max-w-2xl mt-4" style="animation-delay: 0.4s;">
-                    Ð¯ÐºÑÐ¾ Ð²Ð¸ ÑÑÑ, Ð·Ð½Ð°ÑÐ¸ÑÑ Ð²Ð°Ñ ÐºÐ¾Ð½ÑÐµÐ½Ñ Ð¿ÑÐ°ÑÑÑ Ð½Ðµ ÑÐ°Ðº, ÑÐº Ð¿Ð¾Ð²Ð¸Ð½ÐµÐ½. ÐÐ°ÑÑÐ¸ÑÑ ÑÐ½ÑÑÐ°Ð³ÑÐ°Ð¼Ñ Ð·Ð»Ð°Ð¼Ð°Ð»Ð° Ð²Ð°Ñ ÑÑÑÑ.
+                    Якщо ви тут, значить ваш контент працює не так, як повинен. Матриця інстаграму зламала ваш ріст.
                 </p>
             </div>
             <!-- Grid Container - 2x3 on Desktop -->
@@ -863,10 +863,10 @@
                             <iconify-icon icon="lucide:trending-down" width="48" height="48"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
-                            ÐÐ¸ÑÐ¾ÐºÐ° Ð²Ð°ÑÑÑÑÑÑ<br><span class="text-neon-red">Ð·Ð°Ð»ÑÑÐµÐ½Ð½Ñ ÐºÐ»ÑÑÐ½ÑÐ°</span>
+                            Висока вартість<br><span class="text-neon-red">залучення клієнта</span>
                         </h4>
                         <p class="text-gray-400 text-sm leading-relaxed mt-auto">
-                            Ð¢Ð°ÑÐ³ÐµÑÐ¾Ð²Ð°Ð½Ð° ÑÐµÐºÐ»Ð°Ð¼Ð° ÑÑÐ°Ñ Ð´Ð¾ÑÐ¾Ð¶ÑÐ¾Ñ ÑÐ¾Ð´Ð½Ñ. ÐÑÐ´Ð¶ÐµÑÐ¸ Ð·Ð»Ð¸Ð²Ð°ÑÑÑÑÑ, Ð° Ð²Ð°ÑÑÑÑÑÑ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð»ÑÐ´Ð° Ð¿ÑÐ¾Ð±Ð¸Ð²Ð°Ñ ÑÑÐµÐ»Ñ. Ð¡ÑÐ°ÑÑ Ð¼ÐµÑÐ¾Ð´Ð¸ Ð±ÑÐ»ÑÑÐµ Ð½Ðµ Ð´Ð°ÑÑÑ ROI.
+                            Таргетована реклама стає дорожчою щодня. Бюджети зливаються, а вартість нового ліда пробиває стелю. Старі методи більше не дають ROI.
                         </p>
                     </div>
                 </div>
@@ -879,10 +879,10 @@
                             <iconify-icon icon="lucide:coins" width="48" height="48"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
-                            ÐÑÐ¾ÑÑ Ð²Ð¸ÑÑÐ°ÑÐµÐ½Ñ,<br><span class="text-neon-red">Ð° Ð²Ð¸ÑÐ»Ð¾Ð¿Ñ â Ð½ÑÐ»Ñ</span>
+                            Гроші витрачені,<br><span class="text-neon-red">а вихлопу — нуль</span>
                         </h4>
                         <p class="text-gray-400 text-sm leading-relaxed mt-auto">
-                            ÐÐ¸ Ð½Ð°Ð¹Ð½ÑÐ»Ð¸ Ð¼Ð¾Ð½ÑÐ°Ð¶ÐµÑÐ°, ÐºÑÐ¿Ð¸Ð»Ð¸ ÑÐµÑÐ½ÑÐºÑ, Ð·ÑÐ¾Ð±Ð¸Ð»Ð¸ ÑÐ´ÐµÐ°Ð»ÑÐ½Ñ ÐºÐ°ÑÑÐ¸Ð½ÐºÑ, Ð°Ð»Ðµ Ð²Ð°ÑÑ Ð²ÑÐ´ÐµÐ¾ Ð½ÑÑÑÐ¾ Ð½Ðµ Ð´Ð¸Ð²Ð¸ÑÑÑÑ. ÐÑÐ°ÑÐ° Ð±ÐµÐ· ÑÐµÐ½ÑÑÐ² â ÑÐµ Ð³ÑÐ¾ÑÑ Ð½Ð° Ð²ÑÑÐµÑ.
+                            Ви найняли монтажера, купили техніку, зробили ідеальну картинку, але ваші відео ніхто не дивиться. Краса без сенсів — це гроші на вітер.
                         </p>
                     </div>
                 </div>
@@ -895,10 +895,10 @@
                             <iconify-icon icon="lucide:lightbulb-off" width="48" height="48"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
-                            ÐÑÐ¾ ÑÐ¾ Ð·Ð½ÑÐ¼Ð°ÑÐ¸<br><span class="text-neon-red">ÐºÐ¾Ð¶Ð½Ð¾Ð³Ð¾ Ð´Ð½Ñ?</span>
+                            Про що знімати<br><span class="text-neon-red">кожного дня?</span>
                         </h4>
                         <p class="text-gray-400 text-sm leading-relaxed mt-auto">
-                            ÐÐ¾ÑÑÑÐ¹Ð½Ð¸Ð¹ Ð³Ð¾Ð»Ð¾Ð²Ð½Ð¸Ð¹ Ð±ÑÐ»Ñ ÑÐ° ÐºÑÐµÐ°ÑÐ¸Ð²Ð½Ð° ÐºÑÐ¸Ð·Ð°. ÐÐ´ÐµÐ¹ Ð½ÐµÐ¼Ð°Ñ, Ð½Ð°ÑÑÐ½ÐµÐ½Ð½Ñ Ð·Ð½Ð¸ÐºÐ»Ð¾, Ð° Ð°Ð»Ð³Ð¾ÑÐ¸ÑÐ¼ Ð²Ð¸Ð¼Ð°Ð³Ð°Ñ ÑÐµÐ³ÑÐ»ÑÑÐ½Ð¾ÑÑÑ. ÐÐ¸Ð³Ð¾ÑÐ°Ð½Ð½Ñ ÑÑÐ°Ñ Ð²Ð°ÑÐ¸Ð¼ ÑÑÐ¿ÑÑÐ½Ð¸ÐºÐ¾Ð¼.
+                            Постійний головний біль та креативна криза. Ідей немає, натхнення зникло, а алгоритм вимагає регулярності. Вигорання стає вашим супутником.
                         </p>
                     </div>
                 </div>
@@ -911,10 +911,10 @@
                             <iconify-icon icon="lucide:clock-8" width="48" height="48"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
-                            ÐÐºÑÐ¿ÐµÑÑÑ Ð²Ð°Ð¶ÐºÐ¾<br><span class="text-neon-red">Ð²Ð¸Ð´ÑÐ»Ð¸ÑÐ¸ ÑÐ°Ñ</span>
+                            Експерту важко<br><span class="text-neon-red">виділити час</span>
                         </h4>
                         <p class="text-gray-400 text-sm leading-relaxed mt-auto">
-                            Ð£ Ð²Ð°Ñ Ð±ÑÐ·Ð½ÐµÑ, ÐºÐ¾Ð½ÑÑÐ»ÑÑÐ°ÑÑÑ, ÐºÐ»ÑÑÐ½ÑÐ¸. ÐÐµÐ¼Ð°Ñ 5 Ð³Ð¾Ð´Ð¸Ð½ Ð½Ð° Ð¿ÑÐ´Ð³Ð¾ÑÐ¾Ð²ÐºÑ ÑÐ° Ð·Ð¹Ð¾Ð¼ÐºÐ¸. ÐÐ¾ÑÑÑÐ±ÐµÐ½ ÑÐ²Ð¸Ð´ÐºÐ¸Ð¹ ÑÐ¾ÑÐ¼Ð°Ñ Ð³ÐµÐ½ÐµÑÐ°ÑÑÑ ÐºÐ¾Ð½ÑÐµÐ½ÑÑ, ÑÐºÐ¸Ð¹ Ð½Ðµ Ð²Ð¸ÑÐ¼Ð¾ÐºÑÑÑ ÑÐ°Ñ.
+                            У вас бізнес, консультації, клієнти. Немає 5 годин на підготовку та зйомки. Потрібен швидкий формат генерації контенту, який не висмоктує час.
                         </p>
                     </div>
                 </div>
@@ -927,10 +927,10 @@
                             <iconify-icon icon="lucide:bot" width="48" height="48"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
-                            Â«Ð¡ÑÑÐ¸Ð¹Â»<br><span class="text-neon-red">ÐºÐ¾ÑÐ¿Ð¾ÑÐ°ÑÐ¸Ð²Ð½Ð¸Ð¹ Ð±ÑÐµÐ½Ð´</span>
+                            «Сухий»<br><span class="text-neon-red">корпоративний бренд</span>
                         </h4>
                         <p class="text-gray-400 text-sm leading-relaxed mt-auto">
-                            Ð¡ÑÐ¾ÑÑÐ½ÐºÐ° Ð²Ð¸Ð³Ð»ÑÐ´Ð°Ñ Ð·Ð°Ð½Ð°Ð´ÑÐ¾ Ð¾ÑÑÑÑÐ¹Ð½Ð¾, Ð½ÑÐ´Ð½Ð¾ ÑÐ° Â«Ð¿Ð»Ð°ÑÑÐ¸ÐºÐ¾Ð²Ð¾Â». ÐÑÐ´Ð¸ ÐºÑÐ¿ÑÑÑÑ Ñ Ð»ÑÐ´ÐµÐ¹, Ð° Ð²Ð°ÑÐ¾Ð¼Ñ Ð±ÑÐµÐ½Ð´Ñ Ð±ÑÐ°ÐºÑÑ Ð»ÑÐ´ÑÐ½Ð¾ÑÑÑ, ÐµÐ¼Ð¾ÑÑÐ¹ ÑÐ° ÑÐ°ÑÐ°ÐºÑÐµÑÑ.
+                            Сторінка виглядає занадто офіційно, нудно та «пластиково». Люди купують у людей, а вашому бренду бракує людяності, емоцій та характеру.
                         </p>
                     </div>
                 </div>
@@ -943,10 +943,10 @@
                             <iconify-icon icon="lucide:ghost" width="48" height="48"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
-                            ÐÑÐµÐºÑ<br><span class="text-neon-red">Â«Ð½ÐµÐ²Ð¸Ð´Ð¸Ð¼ÐºÐ¸Â»</span>
+                            Ефект<br><span class="text-neon-red">«невидимки»</span>
                         </h4>
                         <p class="text-gray-400 text-sm leading-relaxed mt-auto">
-                            ÐÐ°Ñ ÐºÐ¾Ð½ÑÐµÐ½Ñ Ð¿ÑÐ¾ÑÑÐ¾ Ð³ÑÐ±Ð¸ÑÑÑÑ Ñ ÑÑÑÑÑÑÑ ÑÐµÑÐµÐ´ ÑÐ¸ÑÑÑ ÑÐ½ÑÐ¸Ñ. ÐÐ¸ Ð½Ðµ Ð¿ÑÐ¸Ð²ÐµÑÑÐ°ÑÑÐµ ÑÐ²Ð°Ð³Ñ, Ð½Ðµ Ð²Ð¸Ð´ÑÐ»ÑÑÑÐµÑÑ Ñ Ð½Ðµ ÑÑÐ²Ð¾ÑÑÑÑÐµ ÑÑÐµÐ½Ð´Ð¸. ÐÐ°Ñ Ð½Ðµ Ð¿Ð¾Ð¼ÑÑÐ°ÑÑÑ.
+                            Ваш контент просто губиться у стрічці серед тисяч інших. Ви не привертаєте увагу, не виділяєтесь і не створюєте тренди. Вас не помічають.
                         </p>
                     </div>
                 </div>
@@ -962,9 +962,9 @@
                 </div>
 
                 <h2 class="section-animated-element text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.2] tracking-tight drop-shadow-lg" style="animation-delay: 0.2s;">
-                    ÐÐ¸ Ð½Ðµ Ð¿ÑÐ¾ÑÑÐ¾ ÑÑÐ²Ð¾ÑÑÑÐ¼Ð¾ Reels.<br>
+                    Ми не просто створюємо Reels.<br>
                     <span class="text-matrix-DEFAULT text-glow-matrix mt-2 block">
-                        ÐÐ¸ Ð½Ð°Ð²ÑÐ°ÑÐ¼Ð¾ Ð°Ð»Ð³Ð¾ÑÐ¸ÑÐ¼ Instagram Ð¿ÑÐ¾ÑÑÐ²Ð°ÑÐ¸ Ð²Ð°Ñ ÐºÐ¾Ð½ÑÐµÐ½Ñ.
+                        Ми навчаємо алгоритм Instagram просувати ваш контент.
                     </span>
                 </h2>
             </div>
@@ -972,7 +972,7 @@
             <div class="w-full mb-32 relative">
                 <!-- Decorative Connecting Line -->
                 <div class="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-blue/30 to-transparent -translate-y-1/2 z-0 pointer-events-none"></div>
-                <h3 class="sr-only">Ð¯Ðº ÑÐµ Ð¿ÑÐ°ÑÑÑ - 5 ÐµÑÐ°Ð¿ÑÐ²</h3>
+                <h3 class="sr-only">Як це працює - 5 етапів</h3>
 
                 <!-- 3 Top Nodes -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-6 lg:mb-8 relative z-10">
@@ -983,7 +983,7 @@
                             <iconify-icon icon="lucide:radar" width="40" height="40"></iconify-icon>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
-                            ÐÐ½Ð°Ð»ÑÐ·ÑÑÐ¼Ð¾ Ð²ÑÑÑÑÐ½Ñ ÑÐ¾ÑÐ¼Ð°ÑÐ¸ Ñ Ð²Ð°ÑÑÐ¹ Ð½ÑÑÑ
+                            Аналізуємо вірусні формати у вашій ніші
                         </p>
                     </div>
                     <!-- Step 2 -->
@@ -993,7 +993,7 @@
                             <iconify-icon icon="lucide:pen-tool" width="40" height="40"></iconify-icon>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
-                            Ð¡ÑÐ²Ð¾ÑÑÑÐ¼Ð¾ ÑÑÐµÐ½Ð°ÑÑÑ, ÑÐ¾ ÑÑÑÐ¸Ð¼ÑÑÑÑ ÑÐ²Ð°Ð³Ñ
+                            Створюємо сценарії, що утримують увагу
                         </p>
                     </div>
                     <!-- Step 3 -->
@@ -1003,7 +1003,7 @@
                             <iconify-icon icon="lucide:scissors" width="40" height="40"></iconify-icon>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
-                            ÐÐ¾Ð½ÑÑÑÐ¼Ð¾ Ð²ÑÐ´Ð¿Ð¾Ð²ÑÐ´Ð½Ð¾ Ð´Ð¾ Ð°Ð»Ð³Ð¾ÑÐ¸ÑÐ¼ÑÐ²
+                            Монтуємо відповідно до алгоритмів
                         </p>
                     </div>
                 </div>
@@ -1016,7 +1016,7 @@
                             <iconify-icon icon="lucide:sliders-horizontal" width="40" height="40"></iconify-icon>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
-                            ÐÐ´Ð°Ð¿ÑÑÑÐ¼Ð¾ Ð²ÑÐ´ÐµÐ¾ Ð¿ÑÐ´ Ð²Ð°Ñ Ð±ÑÐµÐ½Ð´
+                            Адаптуємо відео під ваш бренд
                         </p>
                     </div>
                     <!-- Step 5 -->
@@ -1026,7 +1026,7 @@
                             <iconify-icon icon="lucide:rocket" width="40" height="40"></iconify-icon>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
-                            ÐÑÐ±Ð»ÑÐºÑÑÐ¼Ð¾ Ð°Ð±Ð¾ Ð¿ÐµÑÐµÐ´Ð°ÑÐ¼Ð¾ Ð³Ð¾ÑÐ¾Ð²Ñ Ð²ÑÐ´ÐµÐ¾
+                            Публікуємо або передаємо готові відео
                         </p>
                     </div>
                 </div>
@@ -1035,7 +1035,7 @@
             <div class="w-full flex flex-col items-center">
                 <div class="section-animated-element inline-flex items-center gap-3 px-6 py-2 border border-matrix-DEFAULT/50 bg-matrix-dark/20 backdrop-blur-md mb-10 shadow-[0_0_20px_rgba(0,255,65,0.1)]" style="animation-delay: 1.0s;">
                     <span class="text-lg tracking-[0.2em] text-matrix-DEFAULT uppercase font-black text-glow-matrix">
-                        > Ð©Ð¾ Ð²Ð¸ Ð¾ÑÑÐ¸Ð¼Ð°ÑÑÐµ_
+                        > Що ви отримаєте_
                     </span>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
@@ -1046,10 +1046,10 @@
                             <iconify-icon icon="lucide:trending-up" width="32" height="32" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-matrix-DEFAULT tracking-tight mb-3">
-                            ÐÑÐ¾ÑÑÐ°Ð½Ð½Ñ Ð²ÑÑÑ Ð¾ÑÐ¾Ð¿Ð»ÐµÐ½Ñ
+                            Зростання всіх охоплень
                         </h4>
                         <p class="text-sm md:text-base text-matrix-DEFAULT/80 leading-relaxed">
-                            ÐÐ¾Ð´Ð°ÑÐºÐ¾Ð²Ð¾ Ð²ÑÐ´ 1 000 000 Ð»ÑÐ´ÐµÐ¹ Ð¿Ð¾Ð±Ð°ÑÐ¸ÑÑ Ð²Ð°ÑÑ ÑÑÐ¾ÑÑÐ½ÐºÑ ÑÐ° Ð²Ð°Ñ Ð¿ÑÐ¾Ð´ÑÐºÑ
+                            Додатково від 1 000 000 людей побачить вашу сторінку та ваш продукт
                         </p>
                     </div>
                     <!-- Benefit 2 -->
@@ -1059,10 +1059,10 @@
                             <iconify-icon icon="lucide:layers" width="32" height="32" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-matrix-DEFAULT tracking-tight mb-3">
-                            ÐÐ½ÑÐµÐ³ÑÐ°ÑÑÑ Ð¿ÑÐ¾Ð´ÑÐºÑÑ Ñ Ð²ÑÑÐ°Ð»ÑÐ½Ð¸Ð¹ ÐºÐ¾Ð½ÑÐµÐ½Ñ
+                            Інтеграцію продукту у віральний контент
                         </h4>
                         <p class="text-sm md:text-base text-matrix-DEFAULT/80 leading-relaxed">
-                            ÐÐ¾ÑÑÑÐ¹Ð½Ð¸Ð¹ ÐºÐ¾Ð½ÑÐ°ÐºÑ Ð· Ð²Ð°ÑÐ¾Ñ Ð°ÑÐ´Ð¸ÑÐ¾ÑÑÑÑ, Ð²Ð¸ Ð·Ð°Ð¿Ð°Ð¼'ÑÑÐ°ÑÑÐµÑÑ
+                            Постійний контакт з вашою аудиторією, ви запам'ятаєтеся
                         </p>
                     </div>
                     <!-- Benefit 3 -->
@@ -1072,10 +1072,10 @@
                             <iconify-icon icon="lucide:users" width="32" height="32" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"></iconify-icon>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-matrix-DEFAULT tracking-tight mb-3">
-                            ÐÐºÑÐ¸Ð²Ð½Ñ Ð·Ð°Ð»ÑÑÐµÐ½Ñ Ð°ÑÐ´Ð¸ÑÐ¾ÑÑÑ
+                            Активну залучену аудиторію
                         </h4>
                         <p class="text-sm md:text-base text-matrix-DEFAULT/80 leading-relaxed">
-                            ÐÐ¾ÐºÑÐ°ÑÐµÐ½Ð½Ñ ÑÐ¿ÑÐ¸Ð¹Ð½ÑÑÑÑ Ð²Ð°ÑÐ¾Ð³Ð¾ Ð¿ÑÐ¾ÑÑÐ»Ñ Ð°Ð»Ð³Ð¾ÑÐ¸ÑÐ¼Ð°Ð¼Ð¸ Instagram
+                            Покращення сприйняття вашого профілю алгоритмами Instagram
                         </p>
                     </div>
                 </div>
@@ -1089,25 +1089,25 @@
                 <div class="text-center mb-12">
                     <div class="section-animated-element inline-flex items-center gap-3 px-6 py-2 border border-matrix-DEFAULT/50 bg-matrix-dark/20 backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(0,255,65,0.1)]">
                         <span class="text-lg tracking-[0.2em] text-matrix-DEFAULT uppercase font-black text-glow-matrix">
-                            > ÐÐÐÐ¡Ð_
+                            > КЕЙСИ_
                         </span>
                     </div>
                     <h2 class="section-animated-element text-3xl md:text-5xl font-black text-white mb-4" style="animation-delay: 0.2s;">
-                        Ð ÐµÐ°Ð»ÑÐ½Ñ ÑÐµÐ·ÑÐ»ÑÑÐ°ÑÐ¸ <span class="text-matrix-DEFAULT text-glow-matrix">Ð½Ð°ÑÐ¸Ñ ÐºÐ»ÑÑÐ½ÑÑÐ²</span>
+                        Реальні результати <span class="text-matrix-DEFAULT text-glow-matrix">наших клієнтів</span>
                     </h2>
                     <p class="section-animated-element text-base md:text-lg text-gray-400 max-w-2xl mx-auto" style="animation-delay: 0.3s;">
-                        Ð¡ÑÐ°ÑÐ¸ÑÑÐ¸ÐºÐ° Instagram Ð´Ð¾ Ñ Ð¿ÑÑÐ»Ñ Ð½Ð°ÑÐ¾Ñ ÑÐ¾Ð±Ð¾ÑÐ¸ Ð· ÐºÐ¾Ð½ÑÐµÐ½ÑÐ¾Ð¼
+                        Статистика Instagram до і після нашої роботи з контентом
                     </p>
                 </div>
 
                 <!-- 3 Cases Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-14">
 
-                    <!-- CASE 1: 345K â 2.1M -->
+                    <!-- CASE 1: 345K → 2.1M -->
                     <div class="case-card section-animated-element p-5" style="animation-delay: 0.4s;">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-bold tracking-wider text-matrix-DEFAULT/60 uppercase">ÐÐµÐ¹Ñ #01</span>
-                            <span class="case-multiplier text-sm font-black text-matrix-DEFAULT px-3 py-1 rounded-full">Ã6.3</span>
+                            <span class="text-xs font-bold tracking-wider text-matrix-DEFAULT/60 uppercase">Кейс #01</span>
+                            <span class="case-multiplier text-sm font-black text-matrix-DEFAULT px-3 py-1 rounded-full">×6.3</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <!-- BEFORE -->
@@ -1116,11 +1116,11 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="310 80" stroke-dashoffset="-20" opacity="0.4"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="80 310" stroke-dashoffset="-330" opacity="0.4"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">ÐÐµÑÐµÐ³Ð»ÑÐ´Ð¸</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
                                         <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="16" font-weight="800" font-family="Inter, sans-serif">345,477</text>
                                     </svg>
                                 </div>
-                                <div class="text-xs text-neon-red/80 font-bold mt-1">ÐÐ</div>
+                                <div class="text-xs text-neon-red/80 font-bold mt-1">ДО</div>
                             </div>
                             <!-- ARROW -->
                             <div class="case-arrow flex-shrink-0">
@@ -1132,20 +1132,20 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="240 150" stroke-dashoffset="-20"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="150 240" stroke-dashoffset="-260"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">ÐÐµÑÐµÐ³Ð»ÑÐ´Ð¸</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
                                         <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="Inter, sans-serif">2,168,892</text>
                                     </svg>
                                 </div>
-                                <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ÐÐÐ¡ÐÐ¯</div>
+                                <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ПІСЛЯ</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CASE 2: 1.3M â 5.5M -->
+                    <!-- CASE 2: 1.3M → 5.5M -->
                     <div class="case-card section-animated-element p-5" style="animation-delay: 0.55s;">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-bold tracking-wider text-matrix-DEFAULT/60 uppercase">ÐÐµÐ¹Ñ #02</span>
-                            <span class="case-multiplier text-sm font-black text-matrix-DEFAULT px-3 py-1 rounded-full">Ã4.0</span>
+                            <span class="text-xs font-bold tracking-wider text-matrix-DEFAULT/60 uppercase">Кейс #02</span>
+                            <span class="case-multiplier text-sm font-black text-matrix-DEFAULT px-3 py-1 rounded-full">×4.0</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <!-- BEFORE -->
@@ -1154,11 +1154,11 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="300 90" stroke-dashoffset="-20" opacity="0.4"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="90 300" stroke-dashoffset="-320" opacity="0.4"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">ÐÐµÑÐµÐ³Ð»ÑÐ´Ð¸</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
                                         <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="Inter, sans-serif">1,389,871</text>
                                     </svg>
                                 </div>
-                                <div class="text-xs text-neon-red/80 font-bold mt-1">ÐÐ</div>
+                                <div class="text-xs text-neon-red/80 font-bold mt-1">ДО</div>
                             </div>
                             <!-- ARROW -->
                             <div class="case-arrow flex-shrink-0">
@@ -1170,20 +1170,20 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="280 110" stroke-dashoffset="-20"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="110 280" stroke-dashoffset="-300"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">ÐÐµÑÐµÐ³Ð»ÑÐ´Ð¸</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
                                         <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="Inter, sans-serif">5,574,092</text>
                                     </svg>
                                 </div>
-                                <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ÐÐÐ¡ÐÐ¯</div>
+                                <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ПІСЛЯ</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CASE 3: 1.2M â 6.4M -->
+                    <!-- CASE 3: 1.2M → 6.4M -->
                     <div class="case-card section-animated-element p-5" style="animation-delay: 0.7s;">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-bold tracking-wider text-matrix-DEFAULT/60 uppercase">ÐÐµÐ¹Ñ #03</span>
-                            <span class="case-multiplier text-sm font-black text-matrix-DEFAULT px-3 py-1 rounded-full">Ã5.3</span>
+                            <span class="text-xs font-bold tracking-wider text-matrix-DEFAULT/60 uppercase">Кейс #03</span>
+                            <span class="case-multiplier text-sm font-black text-matrix-DEFAULT px-3 py-1 rounded-full">×5.3</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <!-- BEFORE -->
@@ -1192,11 +1192,11 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="308 82" stroke-dashoffset="-20" opacity="0.4"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="82 308" stroke-dashoffset="-328" opacity="0.4"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">ÐÐµÑÐµÐ³Ð»ÑÐ´Ð¸</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
                                         <text x="80" y="92" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="Inter, sans-serif">1,212,769</text>
                                     </svg>
                                 </div>
-                                <div class="text-xs text-neon-red/80 font-bold mt-1">ÐÐ</div>
+                                <div class="text-xs text-neon-red/80 font-bold mt-1">ДО</div>
                             </div>
                             <!-- ARROW -->
                             <div class="case-arrow flex-shrink-0">
@@ -1208,11 +1208,11 @@
                                     <svg viewBox="0 0 160 160" class="w-full h-full">
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-subs" stroke-dasharray="280 110" stroke-dashoffset="-20"/>
                                         <circle cx="80" cy="80" r="62" class="donut-ring donut-segment-nonsubs" stroke-dasharray="110 280" stroke-dashoffset="-300"/>
-                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">ÐÐµÑÐµÐ³Ð»ÑÐ´Ð¸</text>
+                                        <text x="80" y="72" text-anchor="middle" fill="#999" font-size="10" font-family="Inter, sans-serif">Перегляди</text>
                                         <text x="80" y="92" text-anchor="middle" fill="#00FF41" font-size="15" font-weight="800" font-family="Inter, sans-serif">6,414,935</text>
                                     </svg>
                                 </div>
-                                <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ÐÐÐ¡ÐÐ¯</div>
+                                <div class="text-xs text-matrix-DEFAULT font-bold mt-1 text-glow-matrix">ПІСЛЯ</div>
                             </div>
                         </div>
                     </div>
@@ -1226,7 +1226,7 @@
                             <iconify-icon icon="lucide:flame" width="20" height="20" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"></iconify-icon>
                         </div>
                         <div>
-                            <p class="text-white font-bold text-sm md:text-base">ÐÑÐ´ÐµÐ¾ Ð½Ð°Ð±Ð¸ÑÐ°ÑÑÑ Ð´ÐµÑÑÑÐºÐ¸ ÑÐ° ÑÐ¾ÑÐ½Ñ ÑÐ¸ÑÑÑ Ð¿ÐµÑÐµÐ³Ð»ÑÐ´ÑÐ²</p>
+                            <p class="text-white font-bold text-sm md:text-base">Відео набирають десятки та сотні тисяч переглядів</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
@@ -1234,7 +1234,7 @@
                             <iconify-icon icon="lucide:rocket" width="20" height="20" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"></iconify-icon>
                         </div>
                         <div>
-                            <p class="text-white font-bold text-sm md:text-base">ÐÐ»Ð³Ð¾ÑÐ¸ÑÐ¼ Ð¿Ð¾ÑÐ¸Ð½Ð°Ñ Ð°ÐºÑÐ¸Ð²Ð½Ð¾ Ð¿ÑÐ¾ÑÑÐ²Ð°ÑÐ¸ ÑÑÐ¾ÑÑÐ½ÐºÐ¸</p>
+                            <p class="text-white font-bold text-sm md:text-base">Алгоритм починає активно просувати сторінки</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
@@ -1242,7 +1242,7 @@
                             <iconify-icon icon="lucide:star" width="20" height="20" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"></iconify-icon>
                         </div>
                         <div>
-                            <p class="text-white font-bold text-sm md:text-base">ÐÑÐ¾ÑÑÐ°Ñ Ð²Ð¿ÑÐ·Ð½Ð°Ð²Ð°Ð½ÑÑÑÑ Ð±ÑÐµÐ½Ð´Ñ</p>
+                            <p class="text-white font-bold text-sm md:text-base">Зростає впізнаваність бренду</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
@@ -1250,7 +1250,7 @@
                             <iconify-icon icon="lucide:users-round" width="20" height="20" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"></iconify-icon>
                         </div>
                         <div>
-                            <p class="text-white font-bold text-sm md:text-base">Ð'ÑÐ²Ð»ÑÑÑÑÑÑ Ð½Ð¾Ð²Ð° Ð°ÑÐ´Ð¸ÑÐ¾ÑÑÑ Ð±ÐµÐ· ÑÐµÐºÐ»Ð°Ð¼Ð¸</p>
+                            <p class="text-white font-bold text-sm md:text-base">З'являється нова аудиторія без реклами</p>
                         </div>
                     </div>
                 </div>
@@ -1260,7 +1260,7 @@
                     <div class="inline-flex items-center gap-3 px-6 py-3 bg-matrix-dark/20 border border-matrix-DEFAULT/20 rounded-xl backdrop-blur-md">
                         <iconify-icon icon="lucide:repeat-2" width="22" height="22" class="text-neon-blue drop-shadow-[0_0_6px_rgba(0,240,255,0.7)]"></iconify-icon>
                         <span class="text-sm md:text-base text-gray-300 font-medium">
-                            <span class="text-neon-blue font-bold text-glow-blue">ÐÑÑÐ°Ð»ÑÐ½ÑÑÑÑ</span> = Ð¿Ð¾Ð²ÑÐ¾ÑÐ½Ñ Ð¿ÐµÑÐµÐ³Ð»ÑÐ´Ð¸ + ÑÑÑÐ¸Ð¼Ð°Ð½Ð½Ñ ÑÐ²Ð°Ð³Ð¸
+                            <span class="text-neon-blue font-bold text-glow-blue">Віральність</span> = повторні перегляди + утримання уваги
                         </span>
                     </div>
                 </div>
@@ -1274,7 +1274,7 @@
                         <div class="cursor-glow"></div>
                         <span class="relative z-10 flex items-center gap-3 px-8 py-4 text-white font-bold text-base md:text-lg tracking-wide">
                             <iconify-icon icon="lucide:send" width="20" height="20"></iconify-icon>
-                            ÐÐ°Ð»Ð¸ÑÐ¸ÑÐ¸ Ð·Ð°ÑÐ²ÐºÑ
+                            Залишити заявку
                         </span>
                     </button>
                 </div>
@@ -1287,59 +1287,59 @@
             <div class="text-center mb-12">
                 <div class="section-animated-element inline-flex items-center gap-3 px-6 py-2 border border-matrix-DEFAULT/50 bg-matrix-dark/20 backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(0,255,65,0.1)]">
                     <span class="text-lg tracking-[0.2em] text-matrix-DEFAULT uppercase font-black text-glow-matrix">
-                        > Ð¢ÐÐ ÐÐ¤Ð_
+                        > ТАРИФИ_
                     </span>
                 </div>
                 <h2 class="section-animated-element text-3xl md:text-5xl font-black text-white mb-4" style="animation-delay: 0.2s;">
-                    ÐÐ±ÐµÑÐ¸ ÑÐ²ÑÐ¹ <span class="text-matrix-DEFAULT text-glow-matrix">Ð¿Ð°ÐºÐµÑ</span>
+                    Обери свій <span class="text-matrix-DEFAULT text-glow-matrix">пакет</span>
                 </h2>
                 <p class="section-animated-element text-base md:text-lg text-gray-400 max-w-2xl mx-auto" style="animation-delay: 0.3s;">
-                    ÐÐ²Ð° ÑÑÐ²Ð½Ñ ÑÐµÑÐ²ÑÑÑ â Ð¾Ð´Ð¸Ð½ ÑÐµÐ·ÑÐ»ÑÑÐ°Ñ: Ð¼ÑÐ»ÑÐ¹Ð¾Ð½Ð½Ñ Ð¾ÑÐ¾Ð¿Ð»ÐµÐ½Ð½Ñ
+                    Два рівні сервісу — один результат: мільйонні охоплення
                 </p>
             </div>
 
             <!-- Package Cards -->
             <div class="max-w-4xl mx-auto">
 
-                <!-- PACKAGE 1: ÐÑÐ¾ÑÑ -->
+                <!-- PACKAGE 1: Профі -->
                 <div class="section-animated-element pkg pkg--profi" style="animation-delay: 0.4s;">
                     <div class="mb-5">
                         <div class="flex items-baseline gap-3 mb-2">
-                            <h3 class="text-xl md:text-2xl font-black text-white">ÐÑÐ¾ÑÑ</h3>
-                            <span class="text-2xl md:text-3xl font-black text-matrix-DEFAULT text-glow-matrix">$500<span class="text-sm text-gray-500 font-bold">/Ð¼ÑÑ</span></span>
+                            <h3 class="text-xl md:text-2xl font-black text-white">Профі</h3>
+                            <span class="text-2xl md:text-3xl font-black text-matrix-DEFAULT text-glow-matrix">$500<span class="text-sm text-gray-500 font-bold">/міс</span></span>
                         </div>
-                        <p class="text-sm text-gray-400 leading-relaxed">ÐÐ¾Ð½ÑÐµÐ½Ñ-ÐºÐ¾Ð½Ð²ÐµÑÑ Ð¿ÑÐ´ ÐºÐ»ÑÑ. ÐÐ¸ ÑÐ¾Ð±Ð¸Ð¼Ð¾ â ÑÐ¸ Ð¿ÑÐ±Ð»ÑÐºÑÑÑ. Ð¡ÑÐ°Ð±ÑÐ»ÑÐ½Ð¸Ð¹ ÑÑÑÑ ÑÐ° Ð²Ð¸ÑÑÐ´ Ð½Ð° Ð¼ÑÐ»ÑÐ¹Ð¾Ð½Ð½Ñ Ð¾ÑÐ¾Ð¿Ð»ÐµÐ½Ð½Ñ.</p>
+                        <p class="text-sm text-gray-400 leading-relaxed">Контент-конвеєр під ключ. Ми робимо — ти публікуєш. Стабільний ріст та вихід на мільйонні охоплення.</p>
                     </div>
 
                     <!-- Included -->
                     <div class="space-y-1 mb-5">
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
-                            <span class="text-white/80">3â5 Reels ÑÐ¾Ð´Ð½Ñ (ÐºÑÐ»ÑÐºÑÑÑÑ Ð·Ð°ÑÐ²ÐµÑÐ´Ð¶ÑÑÐ¼Ð¾ Ð· ÐºÐ»ÑÑÐ½ÑÐ¾Ð¼)</span>
+                            <span class="text-white/80">3–5 Reels щодня (кількість затверджуємо з клієнтом)</span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
-                            <span class="text-white/80">ÐÐ»ÑÑÐ½Ñ Ð¾Ð±Ð¸ÑÐ°Ñ ÑÐµÐ¼Ð¸ â Ð¼Ð¸ ÑÑÐºÐ°ÑÐ¼Ð¾ Ð²ÑÐ´ÐµÐ¾ ÑÐ° Ð¼Ð¾Ð½ÑÑÑÐ¼Ð¾ Ð¿ÑÐ´ ÐºÐ»ÑÑ</span>
+                            <span class="text-white/80">Клієнт обирає теми — ми шукаємо відео та монтуємо під ключ</span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
-                            <span class="text-white/80">ÐÐ»ÑÑÐ½Ñ Ð·Ð°Ð¿Ð¸ÑÑÑ ÑÐµÐ°ÐºÑÑÑ Ð°Ð±Ð¾ Ð´Ð°Ñ Ð²ÑÐ´ÐµÐ¾ Ð¿ÑÐ¾Ð´ÑÐºÑÑ (Ð¼Ð¾Ð¶Ð½Ð° Ñ ÑÐµ, Ñ ÑÐµ)</span>
+                            <span class="text-white/80">Клієнт записує реакції або дає відео продукту (можна і те, і те)</span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
-                            <span class="text-white/80">ÐÐ¾Ð´Ð°ÑÐ¼Ð¾ Ð¾ÑÐµÑÐ¸ Ð½Ð° Ð²ÑÐ´ÐµÐ¾, ÑÐºÑÐ¾ Ð¿Ð¾ÑÑÑÐ±Ð½Ð¾</span>
+                            <span class="text-white/80">Додаємо офери на відео, якщо потрібно</span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
-                            <span class="text-white/80">ÐÑÐ´Ð±ÑÑ Ð°ÐºÑÑÐ°Ð»ÑÐ½Ð¸Ñ ÑÐ¾ÑÐ¼Ð°ÑÑÐ²</span>
+                            <span class="text-white/80">Підбір актуальних форматів</span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
-                            <span class="text-white/80">ÐÐ¾Ð¶ÐµÐ¼Ð¾ Ð·Ð°Ð¼ÑÑÑÑ ÐºÐ»ÑÑÐ½ÑÐ° Ð²Ð¸ÐºÐ»Ð°Ð´Ð°ÑÐ¸ ÐºÐ¾Ð½ÑÐµÐ½Ñ</span>
+                            <span class="text-white/80">Можемо замість клієнта викладати контент</span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
-                            <span class="text-white/80">ÐÐ¾Ð²Ð½Ð° Ð¿ÑÐ¾Ð·Ð¾ÑÐ° Ð°Ð½Ð°Ð»ÑÑÐ¸ÐºÐ° ÐºÐ¾Ð½ÑÐµÐ½ÑÑ</span>
+                            <span class="text-white/80">Повна прозора аналітика контенту</span>
                         </div>
                     </div>
 
@@ -1347,135 +1347,135 @@
                     <div class="space-y-1 mb-6 pt-4 border-t border-white/5">
                         <div class="pkg-feature pkg-feature--disabled">
                             <iconify-icon icon="lucide:x" class="icon-x"></iconify-icon>
-                            <span>Ð¡ÑÑÐ°ÑÐµÐ³ÑÑÐ½Ð° ÑÐµÑÑÑ ÑÐ° ÑÐ½ÑÐµÐ³ÑÐ°ÑÑÑ Ð¿ÑÐ¾Ð´ÑÐºÑÑ</span>
+                            <span>Стратегічна сесія та інтеграція продукту</span>
                         </div>
                         <div class="pkg-feature pkg-feature--disabled">
                             <iconify-icon icon="lucide:x" class="icon-x"></iconify-icon>
-                            <span>ÐÐµÑÑÐ¾Ð½Ð°Ð»ÑÐ½Ð¸Ð¹ Ð¿ÑÐ¾Ð´Ð¶ÐµÐºÑ-Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ</span>
+                            <span>Персональний проджект-менеджер</span>
                         </div>
                         <div class="pkg-feature pkg-feature--disabled">
                             <iconify-icon icon="lucide:x" class="icon-x"></iconify-icon>
-                            <span>ÐÐ¾Ð½ÑÐµÐ½Ñ Ð¿ÑÐ´ Ð²ÑÐ·ÑÐºÑ Ð½ÑÑÑ Ð´ÑÑÐ»ÑÐ½Ð¾ÑÑÑ</span>
+                            <span>Контент під вузьку нішу діяльності</span>
                         </div>
                     </div>
 
                     <button type="button" onclick="openBookingModal('profi')" class="btn-pkg-outline">
-                        ÐÐ±ÑÐ°ÑÐ¸ ÐÑÐ¾ÑÑ Â· $500
+                        Обрати Профі · $500
                     </button>
                 </div>
 
                 <!-- Divider -->
                 <div class="divider-or section-animated-element" style="animation-delay: 0.5s;">
-                    <span>Ð°Ð±Ð¾</span>
+                    <span>або</span>
                 </div>
 
-                <!-- PACKAGE 2: ÐÐºÑÐ¿ÐµÑÑ (Recommended) -->
+                <!-- PACKAGE 2: Експерт (Recommended) -->
                 <div class="section-animated-element pkg pkg--expert" style="animation-delay: 0.6s;">
-                    <span class="badge-popular">ÐÐ±Ð¸ÑÐ°ÑÑÑ 70%</span>
+                    <span class="badge-popular">Обирають 70%</span>
 
                     <div class="mb-5 mt-2">
                         <div class="flex items-baseline gap-3 mb-2">
-                            <h3 class="text-xl md:text-2xl font-black text-white">ÐÐºÑÐ¿ÐµÑÑ</h3>
-                            <span class="text-2xl md:text-3xl font-black text-neon-blue" style="text-shadow: 0 0 10px rgba(0,240,255,0.6);">$990<span class="text-sm text-gray-500 font-bold">/Ð¼ÑÑ</span></span>
+                            <h3 class="text-xl md:text-2xl font-black text-white">Експерт</h3>
+                            <span class="text-2xl md:text-3xl font-black text-neon-blue" style="text-shadow: 0 0 10px rgba(0,240,255,0.6);">$990<span class="text-sm text-gray-500 font-bold">/міс</span></span>
                         </div>
-                        <p class="text-sm text-gray-400 leading-relaxed">Ð¡ÑÑÐ°ÑÐµÐ³ÑÑÐ½Ð¸Ð¹ Ð¿Ð°ÑÑÐ½ÐµÑ Ð´Ð»Ñ ÑÐ²Ð¾Ð³Ð¾ Ð±ÑÐµÐ½Ð´Ñ. ÐÐ¸ Ð½Ðµ Ð¿ÑÐ¾ÑÑÐ¾ ÑÐ¾Ð±Ð¸Ð¼Ð¾ ÐºÐ¾Ð½ÑÐµÐ½Ñ â Ð¼Ð¸ Ð±ÑÐ´ÑÑÐ¼Ð¾ ÑÐ¸ÑÑÐµÐ¼Ñ, ÑÐºÐ° Ð¿ÑÐ¾Ð´Ð°Ñ.</p>
+                        <p class="text-sm text-gray-400 leading-relaxed">Стратегічний партнер для твого бренду. Ми не просто робимо контент — ми будуємо систему, яка продає.</p>
                     </div>
 
                     <!-- Included -->
                     <div class="space-y-1 mb-6">
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
-                            <span class="text-white/80">ÐÑÐµ Ð· ÐÑÐ¾ÑÑ â 3â5 Reels, Ð¼Ð¾Ð½ÑÐ°Ð¶, Ð¿ÑÐ±Ð»ÑÐºÐ°ÑÑÑ, Ð°Ð½Ð°Ð»ÑÑÐ¸ÐºÐ°</span>
+                            <span class="text-white/80">Все з Профі — 3–5 Reels, монтаж, публікація, аналітика</span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
-                            <span class="text-white/80">Ð¡ÑÑÐ°ÑÐµÐ³ÑÑÐ½Ð° ÑÐµÑÑÑ â Ð±ÑÐ´ÑÑÐ¼Ð¾ Ð¿Ð»Ð°Ð½ ÑÐ½ÑÐµÐ³ÑÐ°ÑÑÑ Ð¿ÑÐ¾Ð´ÑÐºÑÑ ÐºÐ»ÑÑÐ½ÑÐ° Ð² ÐºÐ¾Ð¶Ð½Ðµ Ð²ÑÐ´ÐµÐ¾ <span class="badge-expert-only">Ð¢ÑÐ»ÑÐºÐ¸ ÐÐºÑÐ¿ÐµÑÑ</span></span>
+                            <span class="text-white/80">Стратегічна сесія — будуємо план інтеграції продукту клієнта в кожне відео <span class="badge-expert-only">Тільки Експерт</span></span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
-                            <span class="text-white/80">ÐÐ¾Ð½ÑÐµÐ½Ñ Ð¿ÑÐ´ Ð²ÑÐ·ÑÐºÑ Ð½ÑÑÑ â Ð°Ð´Ð²Ð¾ÐºÐ°Ñ? Ð¨ÑÐºÐ°ÑÐ¼Ð¾ Ð²ÑÐ´ÐµÐ¾ Ð¿ÑÐ¾ ÑÑÐ¼ÐµÐ¹Ð½Ñ ÑÐ¿ÑÐ°Ð²Ð¸. Ð¤ÑÑÐ½ÐµÑ-ÑÑÐµÐ½ÐµÑ? ÐÐ¾Ð½ÑÐµÐ½Ñ Ð¿ÑÐ¾ ÑÐ¿Ð¾ÑÑÐ·Ð°Ð» ÑÐ° Ð²Ð°Ð³Ñ <span class="badge-expert-only">Ð¢ÑÐ»ÑÐºÐ¸ ÐÐºÑÐ¿ÐµÑÑ</span></span>
+                            <span class="text-white/80">Контент під вузьку нішу — адвокат? Шукаємо відео про сімейні справи. Фітнес-тренер? Контент про спортзал та вагу <span class="badge-expert-only">Тільки Експерт</span></span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
-                            <span class="text-white/80">ÐÐµÑÑÐ¾Ð½Ð°Ð»ÑÐ½Ð¸Ð¹ Ð¿ÑÐ¾Ð´Ð¶ÐµÐºÑ-Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ â ÐºÐ¾Ð½ÑÑÐ¾Ð»ÑÑ Ð²ÑÑ ÑÐ¾Ð±Ð¾ÑÑ, ÑÐµÐ°Ð»ÑÐ·ÑÑ ÐºÐ¾ÑÐµÐºÑÐ¸Ð²Ð¸ Ð¼Ð¸ÑÑÑÐ²Ð¾ <span class="badge-expert-only">Ð¢ÑÐ»ÑÐºÐ¸ ÐÐºÑÐ¿ÐµÑÑ</span></span>
+                            <span class="text-white/80">Персональний проджект-менеджер — контролює всю роботу, реалізує корективи миттєво <span class="badge-expert-only">Тільки Експерт</span></span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
-                            <span class="text-white/80">ÐÐ½ÑÐµÐ³ÑÐ°ÑÑÑ Ð¿ÑÐ¾Ð´ÑÐºÑÑ ÑÐ° Ð¾ÑÐµÑÑÐ² ÑÑÑÐ°ÑÐµÐ³ÑÑÐ½Ð¾ Ð² ÐºÐ¾Ð½ÑÐµÐ½Ñ</span>
+                            <span class="text-white/80">Інтеграція продукту та оферів стратегічно в контент</span>
                         </div>
                         <div class="pkg-feature">
                             <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
-                            <span class="text-white/80">ÐÑÑÐ¾ÑÐ¸ÑÐµÑÐ½Ð° ÑÐµÑÐ³Ð° Ð½Ð° Ð¿ÑÐ°Ð²ÐºÐ¸</span>
+                            <span class="text-white/80">Пріоритетна черга на правки</span>
                         </div>
                     </div>
 
                     <button type="button" onclick="openBookingModal('expert')" class="btn-pkg-filled">
-                        ÐÐ±ÑÐ°ÑÐ¸ ÐÐºÑÐ¿ÐµÑÑ Â· $990
+                        Обрати Експерт · $990
                     </button>
                 </div>
             </div>
 
             <!-- Comparison Table -->
             <div class="section-animated-element max-w-4xl mx-auto mt-14 bg-white/[0.04] border border-white/10 rounded-2xl p-4 md:p-6 backdrop-blur-xl overflow-x-auto" style="animation-delay: 0.7s;">
-                <h3 class="text-base md:text-lg font-black text-white mb-4 tracking-wide uppercase">ÐÐ¾ÑÑÐ²Ð½ÑÐ½Ð½Ñ Ð¿Ð°ÐºÐµÑÑÐ²</h3>
+                <h3 class="text-base md:text-lg font-black text-white mb-4 tracking-wide uppercase">Порівняння пакетів</h3>
                 <table class="compare-table">
                     <thead>
                         <tr>
-                            <th class="text-left text-gray-400">Ð©Ð¾ Ð²ÑÐ¾Ð´Ð¸ÑÑ</th>
-                            <th class="col-profi">ÐÑÐ¾ÑÑ</th>
-                            <th class="col-expert">ÐÐºÑÐ¿ÐµÑÑ</th>
+                            <th class="text-left text-gray-400">Що входить</th>
+                            <th class="col-profi">Профі</th>
+                            <th class="col-expert">Експерт</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Reels ÑÐ¾Ð´Ð½Ñ</td>
-                            <td>3â5</td>
-                            <td class="col-expert" style="color: #00F0FF; font-weight: 700;">3â5</td>
+                            <td>Reels щодня</td>
+                            <td>3–5</td>
+                            <td class="col-expert" style="color: #00F0FF; font-weight: 700;">3–5</td>
                         </tr>
                         <tr>
-                            <td>ÐÐ¾ÑÑÐº Ð²ÑÐ´ÐµÐ¾</td>
-                            <td style="color: #00FF41;">â</td>
-                            <td class="col-expert" style="color: #00FF41;">â</td>
+                            <td>Пошук відео</td>
+                            <td style="color: #00FF41;">✓</td>
+                            <td class="col-expert" style="color: #00FF41;">✓</td>
                         </tr>
                         <tr>
-                            <td>ÐÐ¾Ð½ÑÐ°Ð¶ Ð¿ÑÐ´ ÐºÐ»ÑÑ</td>
-                            <td style="color: #00FF41;">â</td>
-                            <td class="col-expert" style="color: #00FF41;">â</td>
+                            <td>Монтаж під ключ</td>
+                            <td style="color: #00FF41;">✓</td>
+                            <td class="col-expert" style="color: #00FF41;">✓</td>
                         </tr>
                         <tr>
-                            <td>ÐÑÐ±Ð»ÑÐºÐ°ÑÑÑ Ð·Ð° ÑÐµÐ±Ðµ</td>
-                            <td style="color: #00FF41;">â</td>
-                            <td class="col-expert" style="color: #00FF41;">â</td>
+                            <td>Публікація за тебе</td>
+                            <td style="color: #00FF41;">✓</td>
+                            <td class="col-expert" style="color: #00FF41;">✓</td>
                         </tr>
                         <tr>
-                            <td>ÐÐ½Ð°Ð»ÑÑÐ¸ÐºÐ° ÐºÐ¾Ð½ÑÐµÐ½ÑÑ</td>
-                            <td style="color: #00FF41;">â</td>
-                            <td class="col-expert" style="color: #00FF41;">â</td>
+                            <td>Аналітика контенту</td>
+                            <td style="color: #00FF41;">✓</td>
+                            <td class="col-expert" style="color: #00FF41;">✓</td>
                         </tr>
                         <tr>
-                            <td>ÐÑÐµÑÐ¸ Ð½Ð° Ð²ÑÐ´ÐµÐ¾</td>
-                            <td style="color: #00FF41;">â</td>
-                            <td class="col-expert" style="color: #00F0FF; font-weight: 700;">â ÑÑÑÐ°ÑÐµÐ³ÑÑÐ½Ð¾</td>
+                            <td>Офери на відео</td>
+                            <td style="color: #00FF41;">✓</td>
+                            <td class="col-expert" style="color: #00F0FF; font-weight: 700;">★ стратегічно</td>
                         </tr>
                         <tr>
-                            <td>ÐÐ¾Ð½ÑÐµÐ½Ñ Ð¿ÑÐ´ Ð½ÑÑÑ</td>
-                            <td style="color: rgba(255,255,255,0.2);">â</td>
-                            <td class="col-expert" style="color: #00FF41;">â</td>
+                            <td>Контент під нішу</td>
+                            <td style="color: rgba(255,255,255,0.2);">—</td>
+                            <td class="col-expert" style="color: #00FF41;">✓</td>
                         </tr>
                         <tr>
-                            <td>Ð¡ÑÑÐ°ÑÐµÐ³ÑÑÐ½Ð° ÑÐµÑÑÑ</td>
-                            <td style="color: rgba(255,255,255,0.2);">â</td>
-                            <td class="col-expert" style="color: #00FF41;">â</td>
+                            <td>Стратегічна сесія</td>
+                            <td style="color: rgba(255,255,255,0.2);">—</td>
+                            <td class="col-expert" style="color: #00FF41;">✓</td>
                         </tr>
                         <tr>
-                            <td>ÐÐµÑÑÐ¾Ð½Ð°Ð»ÑÐ½Ð¸Ð¹ Ð¿ÑÐ¾Ð´Ð¶ÐµÐºÑ</td>
-                            <td style="color: rgba(255,255,255,0.2);">â</td>
-                            <td class="col-expert" style="color: #00FF41;">â</td>
+                            <td>Персональний проджект</td>
+                            <td style="color: rgba(255,255,255,0.2);">—</td>
+                            <td class="col-expert" style="color: #00FF41;">✓</td>
                         </tr>
                         <tr>
-                            <td>ÐÑÑÐ¾ÑÐ¸ÑÐµÑÐ½Ð° ÑÐµÑÐ³Ð°</td>
-                            <td style="color: rgba(255,255,255,0.2);">â</td>
-                            <td class="col-expert" style="color: #00FF41;">â</td>
+                            <td>Пріоритетна черга</td>
+                            <td style="color: rgba(255,255,255,0.2);">—</td>
+                            <td class="col-expert" style="color: #00FF41;">✓</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1483,9 +1483,9 @@
 
             <!-- Guarantee Block -->
             <div class="section-animated-element max-w-4xl mx-auto mt-8 guarantee-block flex items-start gap-4" style="animation-delay: 0.8s;">
-                <span class="text-3xl flex-shrink-0 mt-0.5">ð¡</span>
+                <span class="text-3xl flex-shrink-0 mt-0.5">🛡</span>
                 <p class="text-sm md:text-base text-gray-300 leading-relaxed">
-                    <span class="text-white font-bold">ÐÐ±Ð¸Ð´Ð²Ð° Ð¿Ð°ÐºÐµÑÐ¸</span> â Ð³Ð°ÑÐ°Ð½ÑÑÑ <span class="text-matrix-DEFAULT font-bold text-glow-matrix">1 000 000 Ð¿ÐµÑÐµÐ³Ð»ÑÐ´ÑÐ²</span> Ð·Ð° 30 Ð´Ð½ÑÐ². ÐÐµ Ð´Ð¾ÑÑÐ³Ð»Ð¸? ÐÐ°ÑÑÑÐ¿Ð½Ð¸Ð¹ Ð¼ÑÑÑÑÑ â <span class="text-matrix-DEFAULT font-bold">Ð±ÐµÐ·ÐºÐ¾ÑÑÐ¾Ð²Ð½Ð¾.</span>
+                    <span class="text-white font-bold">Обидва пакети</span> — гарантія <span class="text-matrix-DEFAULT font-bold text-glow-matrix">1 000 000 переглядів</span> за 30 днів. Не досягли? Наступний місяць — <span class="text-matrix-DEFAULT font-bold">безкоштовно.</span>
                 </p>
             </div>
         </section>
@@ -1513,8 +1513,7 @@
             <button onclick="document.getElementById('booking-modal')?.classList.remove('hidden')" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-matrix-dark to-matrix-DEFAULT/80 text-black font-black text-sm tracking-wider uppercase rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,65,0.3)] hover:brightness-110"><iconify-icon icon="lucide:headphones" width="18"></iconify-icon>Зв'яжіться зі мною!</button>
         </div>
     </section>
-
-    </main>
+</main>
 
     <!-- ===== BOOKING MODAL ===== -->
     <div id="booking-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
@@ -1530,20 +1529,20 @@
             <div class="mb-6 text-center">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 border border-matrix-DEFAULT/40 bg-matrix-dark/20 rounded-sm mb-4">
                     <span class="w-2 h-2 rounded-full bg-matrix-DEFAULT shadow-[0_0_8px_#00FF41] animate-pulse-fast"></span>
-                    <span class="text-xs tracking-[0.2em] text-matrix-DEFAULT uppercase font-bold">ÐÑÐ¾Ð½ÑÐ²Ð°Ð½Ð½Ñ</span>
+                    <span class="text-xs tracking-[0.2em] text-matrix-DEFAULT uppercase font-bold">Бронювання</span>
                 </div>
-                <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight">ÐÐ°Ð»Ð¸ÑÐ¸ÑÐ¸ Ð·Ð°ÑÐ²ÐºÑ</h3>
-                <p class="text-gray-400 text-sm mt-2">ÐÐ°Ð¿Ð¾Ð²Ð½ÑÑÑ ÑÐ¾ÑÐ¼Ñ Ñ Ð¼Ð¸ Ð·Ð²'ÑÐ¶ÐµÐ¼Ð¾ÑÑ Ð· Ð²Ð°Ð¼Ð¸</p>
+                <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight">Залишити заявку</h3>
+                <p class="text-gray-400 text-sm mt-2">Заповніть форму і ми зв'яжемося з вами</p>
             </div>
             <!-- Plan Selector -->
             <div id="plan-row" class="flex gap-3 mb-6">
                 <button type="button" onclick="selectPlan('profi')" id="plan-btn-profi"
                     class="flex-1 py-3 rounded-xl border text-sm font-bold tracking-wider uppercase text-center transition-all duration-300 border-matrix-DEFAULT/30 text-matrix-DEFAULT/60 bg-transparent">
-                    ÐÑÐ¾ÑÑ Â· $500
+                    Профі · $500
                 </button>
                 <button type="button" onclick="selectPlan('expert')" id="plan-btn-expert"
                     class="flex-1 py-3 rounded-xl border text-sm font-bold tracking-wider uppercase text-center transition-all duration-300 border-neon-blue/30 text-neon-blue/60 bg-transparent">
-                    ÐÐºÑÐ¿ÐµÑÑ Â· $990
+                    Експерт · $990
                 </button>
             </div>
             <input type="hidden" id="field-plan" name="plan" value="">
@@ -1551,16 +1550,16 @@
             <form id="booking-form" class="flex flex-col gap-5" onsubmit="return submitBooking(event)">
                 <!-- Name -->
                 <div>
-                    <label for="field-name" class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-2">ÐÐ¼'Ñ *</label>
+                    <label for="field-name" class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-2">Ім'я *</label>
                     <div class="relative">
                         <iconify-icon icon="lucide:user" width="18" height="18" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></iconify-icon>
-                        <input type="text" id="field-name" name="name" required placeholder="ÐÐ°ÑÐµ ÑÐ¼'Ñ"
+                        <input type="text" id="field-name" name="name" required placeholder="Ваше ім'я"
                             class="w-full bg-black/60 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm placeholder-gray-600 outline-none focus:border-matrix-DEFAULT/60 focus:shadow-[0_0_15px_rgba(0,255,65,0.1)] transition-all duration-300">
                     </div>
                 </div>
                 <!-- Phone -->
                 <div>
-                    <label for="field-phone" class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-2">Ð¢ÐµÐ»ÐµÑÐ¾Ð½ *</label>
+                    <label for="field-phone" class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-2">Телефон *</label>
                     <div class="relative">
                         <iconify-icon icon="lucide:phone" width="18" height="18" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></iconify-icon>
                         <input type="tel" id="field-phone" name="phone" required placeholder="+380 ..."
@@ -1580,11 +1579,11 @@
                 <div id="form-error" class="hidden text-neon-red text-xs font-bold text-center text-glow-red"></div>
                 <!-- Success Message -->
                 <div id="form-success" class="hidden text-matrix-DEFAULT text-sm font-bold text-center text-glow-matrix py-4">
-                    ÐÐ°ÑÐ²ÐºÑ Ð²ÑÐ´Ð¿ÑÐ°Ð²Ð»ÐµÐ½Ð¾! ÐÐ¸ Ð·Ð²'ÑÐ¶ÐµÐ¼Ð¾ÑÑ Ð· Ð²Ð°Ð¼Ð¸ Ð½Ð°Ð¹Ð±Ð»Ð¸Ð¶ÑÐ¸Ð¼ ÑÐ°ÑÐ¾Ð¼.
+                    Заявку відправлено! Ми зв'яжемося з вами найближчим часом.
                 </div>
                 <!-- Submit Button -->
                 <button type="submit" id="form-submit-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-matrix-dark to-matrix-DEFAULT/80 text-black font-black text-base tracking-wider uppercase transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,65,0.3)] hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed">
-                    ÐÑÐ´Ð¿ÑÐ°Ð²Ð¸ÑÐ¸ Ð·Ð°ÑÐ²ÐºÑ
+                    Відправити заявку
                 </button>
             </form>
         </div>
@@ -1597,7 +1596,7 @@
             // --- 1. Background handled via CSS Aurora ---
             // --- 2. Animations handled via CSS Cascade ---
             // --- 3. Hero Section Typing (Immediate) ---
-            const textToTypeHero = "ÐÐ½ÑÑÐ°-Ð°Ð»Ð³Ð¾ÑÐ¸ÑÐ¼ ÑÐ³Ð½Ð¾ÑÑÑ ÑÐµÐ±Ðµ, Ð°Ð»Ðµ Ñ Ð¿ÑÐ¾Ð¿Ð¾Ð½ÑÑ Ð²Ð¸Ð±ÑÑ, ÑÐºÐ¸Ð¹ Ð·Ð¼ÑÐ½Ð¸ÑÑ ÑÑÐµ.";
+            const textToTypeHero = "Інста-алгоритм ігнорує тебе, але я пропоную вибір, який змінить усе.";
             const typedContentHero = document.getElementById('typed-hero');
             const buttonsContainer = document.getElementById('action-buttons');
             let charIndexHero = 0;
@@ -1671,7 +1670,7 @@
                 });
             });
             // --- 5. Pain Points Typing (Triggered on scroll) ---
-            const headlineTextPain = "> ÐÐÐ¯ÐÐÐÐÐ ÐÐ ÐÐ¢ÐÐ§ÐÐ ÐÐÐÐ ÐÐÐÐ£ÐÐ¢Ð_";
+            const headlineTextPain = "> ВИЯВЛЕНО КРИТИЧНІ БОЛІ АКАУНТА_";
             const typedElementPain = document.getElementById('typed-pain');
             const cursorPain = document.getElementById('cursor-pain');
             let charIndexPain = 0;
@@ -1742,7 +1741,7 @@
                 document.getElementById('form-success').classList.add('hidden');
                 document.getElementById('booking-form').reset();
                 document.getElementById('form-submit-btn').disabled = false;
-                document.getElementById('form-submit-btn').textContent = 'ÐÑÐ´Ð¿ÑÐ°Ð²Ð¸ÑÐ¸ Ð·Ð°ÑÐ²ÐºÑ';
+                document.getElementById('form-submit-btn').textContent = 'Відправити заявку';
                 document.getElementById('form-submit-btn').classList.remove('hidden');
                 document.getElementById('field-plan').value = '';
                 selectPlan('');
@@ -1761,13 +1760,13 @@
             errorEl.classList.add('hidden');
 
             if (!name || !phone || !instagram) {
-                errorEl.textContent = 'ÐÑÐ´Ñ Ð»Ð°ÑÐºÐ°, Ð·Ð°Ð¿Ð¾Ð²Ð½ÑÑÑ ÑÑÑ Ð¿Ð¾Ð»Ñ';
+                errorEl.textContent = 'Будь ласка, заповніть усі поля';
                 errorEl.classList.remove('hidden');
                 return false;
             }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'ÐÑÐ´Ð¿ÑÐ°Ð²Ð»ÑÑÐ¼Ð¾...';
+            submitBtn.textContent = 'Відправляємо...';
 
             fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
@@ -1777,7 +1776,7 @@
                     name: name,
                     phone: phone,
                     instagram: instagram,
-                    plan: plan || 'Ð½Ðµ Ð¾Ð±ÑÐ°Ð½Ð¾',
+                    plan: plan || 'не обрано',
                     timestamp: new Date().toISOString()
                 })
             }).then(() => {
@@ -1786,10 +1785,10 @@
                 submitBtn.classList.add('hidden');
                 setTimeout(closeBookingModal, 3000);
             }).catch(() => {
-                errorEl.textContent = 'ÐÐ¾Ð¼Ð¸Ð»ÐºÐ° Ð²ÑÐ´Ð¿ÑÐ°Ð²ÐºÐ¸. Ð¡Ð¿ÑÐ¾Ð±ÑÐ¹ÑÐµ ÑÐµ ÑÐ°Ð·.';
+                errorEl.textContent = 'Помилка відправки. Спробуйте ще раз.';
                 errorEl.classList.remove('hidden');
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'ÐÑÐ´Ð¿ÑÐ°Ð²Ð¸ÑÐ¸ Ð·Ð°ÑÐ²ÐºÑ';
+                submitBtn.textContent = 'Відправити заявку';
             });
 
             return false;
@@ -1799,16 +1798,16 @@
             if (e.key === 'Escape') closeBookingModal();
         });
     
-            // FAQ Toggle
-            document.querySelectorAll('.faq-question').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const item = btn.closest('.faq-item');
-                    const isActive = item.classList.contains('active');
-                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                    if (!isActive) item.classList.add('active');
-                });
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
             });
-        </script>
+        });
+</script>
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="relative z-30 w-full border-t border-white/5">
@@ -1845,6 +1844,5 @@
             </div>
         </div>
     </footer>
-
 </body>
 </html>
