@@ -1,0 +1,3 @@
+Contact: mailto:content.zvd@gmail.com
+Preferred-Languages: uk, en
+Canonical: https://contentzvd.com/.well-known/security.txt

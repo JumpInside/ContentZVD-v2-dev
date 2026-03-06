@@ -1648,9 +1648,11 @@
             const buttonsContainer = document.getElementById('action-buttons');
             let charIndexHero = 0;
             // Pre-load translated hero text
+            const ALLOWED_LANGS = ['uk', 'ru', 'en'];
             (async () => {
                 try {
-                    const savedLang = localStorage.getItem('lang') || 'uk';
+                    const raw = localStorage.getItem('lang');
+                    const savedLang = ALLOWED_LANGS.includes(raw) ? raw : 'uk';
                     if (savedLang !== 'uk') {
                         const resp = await fetch('lang/' + savedLang + '.json');
                         const data = await resp.json();
@@ -1868,6 +1870,8 @@
 
         // --- Booking Modal ---
         const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwZUySyWWS19rV_YEfXkfvacwpAmDFYo25dgvGhr4H9S1n5WedABqMBEMqJikF7dx8L9g/exec';
+        let lastSubmitTime = 0;
+        const SUBMIT_COOLDOWN = 30000; // 30 seconds between submissions
 
         function selectPlan(plan) {
             document.getElementById('field-plan').value = plan;
@@ -1932,26 +1936,61 @@
                 return false;
             }
 
+            // Phone validation: digits, spaces, dashes, plus, parens, 7-20 chars
+            const phoneClean = phone.replace(/[\s\-\(\)]/g, '');
+            if (!/^\+?\d{7,15}$/.test(phoneClean)) {
+                errorEl.textContent = (currentLangData && currentLangData.modal_error_phone) || 'Please enter a valid phone number';
+                errorEl.classList.remove('hidden');
+                return false;
+            }
+
+            // Instagram validation: letters, digits, dots, underscores
+            const igHandle = instagram.replace(/^@/, '');
+            if (!/^[a-zA-Z0-9._]{1,30}$/.test(igHandle)) {
+                errorEl.textContent = (currentLangData && currentLangData.modal_error_instagram) || 'Please enter a valid Instagram username';
+                errorEl.classList.remove('hidden');
+                return false;
+            }
+
+            // Rate limiting: 30s cooldown
+            const now = Date.now();
+            if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
+                const secsLeft = Math.ceil((SUBMIT_COOLDOWN - (now - lastSubmitTime)) / 1000);
+                errorEl.textContent = (currentLangData && currentLangData.modal_error_cooldown) || 'Please wait ' + secsLeft + 's before submitting again';
+                errorEl.classList.remove('hidden');
+                return false;
+            }
+
             submitBtn.disabled = true;
             submitBtn.textContent = (currentLangData && currentLangData.modal_sending) || 'Sending...';
+
+            // Fetch with 10s timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+            lastSubmitTime = Date.now();
 
             fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
+                signal: controller.signal,
                 body: JSON.stringify({
                     name: name,
                     phone: phone,
-                    instagram: instagram,
+                    instagram: '@' + igHandle,
                     plan: plan || 'не обрано',
                     timestamp: new Date().toISOString()
                 })
             }).then(() => {
+                clearTimeout(timeoutId);
                 document.getElementById('booking-form').reset();
                 successEl.classList.remove('hidden');
                 submitBtn.classList.add('hidden');
                 setTimeout(closeBookingModal, 3000);
             }).catch(() => {
+                clearTimeout(timeoutId);
+                lastSubmitTime = 0; // allow retry on error
                 errorEl.textContent = (currentLangData && currentLangData.modal_error_send) || 'Sending error. Please try again.';
                 errorEl.classList.remove('hidden');
                 submitBtn.disabled = false;
@@ -1977,7 +2016,8 @@
 
         // --- i18n Language Switching ---
         let currentLangData = null;
-        let currentLang = localStorage.getItem('lang') || 'uk';
+        const rawLang = localStorage.getItem('lang');
+        let currentLang = ALLOWED_LANGS.includes(rawLang) ? rawLang : 'uk';
 
         const langCache = {};
 
@@ -2047,6 +2087,7 @@
         }
 
         async function setLang(lang) {
+            if (!ALLOWED_LANGS.includes(lang)) lang = 'uk';
             currentLang = lang;
             localStorage.setItem('lang', lang);
             const data = await loadLang(lang);
