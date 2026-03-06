@@ -11,6 +11,10 @@
     <link rel="preload" as="image" href="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/c7708832-5848-45e7-955a-de1301e8913a/1772474148679-e4856807/______________2026-03-02___19.42.12.png">
     <script>if('scrollRestoration' in history) history.scrollRestoration='manual'; window.scrollTo(0,0);</script>
     <style>
+        /* Fix iOS Safari 100vh jump when address bar shows/hides */
+        @supports (min-height: 100svh) {
+            .min-h-screen { min-height: 100svh !important; }
+        }
         body {
             background-color: #000000;
             color: #ffffff;
@@ -1751,13 +1755,13 @@
                 }, { threshold: 0.05 });
                 observer.observe(heroSection);
 
-                // Resize handling
-                let resizeTimer;
+                // Resize handling — ignore iOS toolbar height changes (only width matters)
+                let lastWidth = window.innerWidth;
                 window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => {
-                        if (animId) { buildColumns(); ctx.clearRect(0, 0, canvas.width, canvas.height); }
-                    }, 200);
+                    const newWidth = window.innerWidth;
+                    if (newWidth === lastWidth) return; // iOS toolbar toggle, skip
+                    lastWidth = newWidth;
+                    if (animId) { buildColumns(); ctx.clearRect(0, 0, canvas.width, canvas.height); }
                 });
 
                 // Init
