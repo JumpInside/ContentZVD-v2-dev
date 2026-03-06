@@ -112,6 +112,17 @@
             -webkit-mask-image: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 75%);
             mask-image: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 75%);
         }
+        #matrix-rain-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.85;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #matrix-rain-canvas { display: none; }
+        }
         /* VALUE PROPOSITION BUTTON STYLES */
         @keyframes holoShimmer {
             0% { background-position: 0% 50%; }
@@ -748,6 +759,7 @@
                      decoding="async"
                      width="1000" height="1000"
                      class="w-full max-w-[1000px] h-full object-cover md:object-contain opacity-100 image-mask mix-blend-screen contrast-[1.4] saturate-[1.6] brightness-[1.15] filter drop-shadow-[0_0_15px_rgba(255,0,0,0.15)]">
+                <canvas id="matrix-rain-canvas" class="image-mask" aria-hidden="true"></canvas>
             </div>
             <!-- Content Container -->
             <div class="relative z-40 w-full max-w-4xl px-6 flex flex-col items-center">
@@ -1626,6 +1638,152 @@
                 }
             }
             setTimeout(typeWriterHero, 2600);
+
+            // --- 3b. Matrix Rain on Morpheus Glasses ---
+            (function initMatrixRain() {
+                const canvas = document.getElementById('matrix-rain-canvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const img = canvas.parentElement.querySelector('img');
+                if (!img) return;
+
+                // Lens positions in normalized image coordinates (0–1)
+                const LENS_CONFIG = [
+                    { cx: 0.405, cy: 0.385, rx: 0.075, ry: 0.045 },
+                    { cx: 0.595, cy: 0.385, rx: 0.075, ry: 0.045 }
+                ];
+
+                const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+                const FPS = 15;
+                const FRAME_INTERVAL = 1000 / FPS;
+                let lenses = [];
+                let animId = null;
+                let lastTime = 0;
+                let fontSize = 10;
+
+                function getRenderedImageRect() {
+                    const cW = img.clientWidth, cH = img.clientHeight;
+                    const nW = img.naturalWidth || 1000, nH = img.naturalHeight || 1000;
+                    const isMd = window.matchMedia('(min-width: 768px)').matches;
+                    const fit = isMd ? 'contain' : 'cover';
+                    const cR = cW / cH, iR = nW / nH;
+                    let rW, rH;
+                    if (fit === 'contain') {
+                        if (cR > iR) { rH = cH; rW = cH * iR; }
+                        else { rW = cW; rH = cW / iR; }
+                    } else {
+                        if (cR > iR) { rW = cW; rH = cW / iR; }
+                        else { rH = cH; rW = cH * iR; }
+                    }
+                    return { renderW: rW, renderH: rH, offsetX: (cW - rW) / 2, offsetY: (cH - rH) / 2 };
+                }
+
+                function buildColumns() {
+                    const container = canvas.parentElement;
+                    const dpr = window.devicePixelRatio || 1;
+                    canvas.width = container.clientWidth * dpr;
+                    canvas.height = container.clientHeight * dpr;
+                    ctx.scale(dpr, dpr);
+
+                    const rect = getRenderedImageRect();
+                    fontSize = Math.max(7, rect.renderW * 0.011);
+                    lenses = [];
+
+                    for (const lens of LENS_CONFIG) {
+                        const cx = rect.offsetX + lens.cx * rect.renderW;
+                        const cy = rect.offsetY + lens.cy * rect.renderH;
+                        const rx = lens.rx * rect.renderW;
+                        const ry = lens.ry * rect.renderH;
+                        const cols = [];
+                        const colW = fontSize * 0.75;
+                        for (let x = cx - rx; x < cx + rx; x += colW) {
+                            const dx = (x - cx) / rx;
+                            if (Math.abs(dx) > 1) continue;
+                            const yExt = ry * Math.sqrt(1 - dx * dx);
+                            cols.push({
+                                x: x,
+                                topY: cy - yExt,
+                                bottomY: cy + yExt,
+                                currentY: cy - yExt + Math.random() * yExt * 2,
+                                speed: 0.4 + Math.random() * 1.2
+                            });
+                        }
+                        lenses.push({ cx, cy, rx, ry, columns: cols });
+                    }
+                }
+
+                function draw(timestamp) {
+                    animId = requestAnimationFrame(draw);
+                    if (timestamp - lastTime < FRAME_INTERVAL) return;
+                    lastTime = timestamp;
+
+                    const dpr = window.devicePixelRatio || 1;
+                    const w = canvas.width / dpr, h = canvas.height / dpr;
+
+                    // Trail fade
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
+                    ctx.fillRect(0, 0, w, h);
+
+                    ctx.font = fontSize + 'px monospace';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'top';
+
+                    for (const lens of lenses) {
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.ellipse(lens.cx, lens.cy, lens.rx, lens.ry, 0, 0, Math.PI * 2);
+                        ctx.clip();
+
+                        for (const col of lens.columns) {
+                            const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
+                            // Bright leading char
+                            ctx.fillStyle = '#ccffcc';
+                            ctx.fillText(ch, col.x, col.currentY);
+                            // Dimmer trail char
+                            ctx.fillStyle = 'rgba(0, 255, 65, 0.7)';
+                            ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], col.x, col.currentY - fontSize);
+
+                            col.currentY += fontSize * col.speed;
+                            if (col.currentY > col.bottomY) {
+                                col.currentY = col.topY;
+                                col.speed = 0.4 + Math.random() * 1.2;
+                            }
+                        }
+                        ctx.restore();
+                    }
+                }
+
+                function start() {
+                    buildColumns();
+                    if (!animId) animId = requestAnimationFrame(draw);
+                }
+
+                function stop() {
+                    if (animId) { cancelAnimationFrame(animId); animId = null; }
+                }
+
+                // Visibility optimization
+                const heroSection = document.getElementById('section-hero');
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) start();
+                    else stop();
+                }, { threshold: 0.05 });
+                observer.observe(heroSection);
+
+                // Resize handling
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        if (animId) { buildColumns(); ctx.clearRect(0, 0, canvas.width, canvas.height); }
+                    }, 200);
+                });
+
+                // Init
+                if (img.complete) start();
+                else img.addEventListener('load', start);
+            })();
+
             // --- 4. Value Proposition - Timer & Holo Button ---
             // Kyiv time helpers (UTC+2 / UTC+3 auto via timezone)
             function getKyivNow() {
