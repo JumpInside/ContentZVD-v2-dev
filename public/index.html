@@ -11,6 +11,10 @@
     <link rel="preload" as="image" href="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/c7708832-5848-45e7-955a-de1301e8913a/1772474148679-e4856807/______________2026-03-02___19.42.12.png">
     <script>if('scrollRestoration' in history) history.scrollRestoration='manual'; window.scrollTo(0,0);</script>
     <style>
+        /* Fix iOS Safari 100vh jump when address bar shows/hides */
+        @supports (min-height: 100svh) {
+            .min-h-screen { min-height: 100svh !important; }
+        }
         body {
             background-color: #000000;
             color: #ffffff;
@@ -687,8 +691,34 @@
             inset: 0;
             z-index: 9999;
             background: #000;
-            animation: preloaderFade 0.5s 0.3s forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: preloaderFade 0.5s 0.8s forwards;
             pointer-events: none;
+        }
+        #preloader .preloader-logo {
+            font-family: inherit;
+            font-weight: 900;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            letter-spacing: 0.15em;
+            color: #fff;
+            filter: drop-shadow(0 0 12px rgba(255,255,255,0.6));
+            animation: preloaderPulse 1.2s ease-in-out infinite;
+        }
+        #preloader .preloader-dot {
+            display: inline-block;
+            width: 0.3em;
+            height: 0.3em;
+            background: #cc2233;
+            border-radius: 50%;
+            margin: 0 0.05em;
+            vertical-align: middle;
+            box-shadow: 0 0 8px rgba(204,34,51,0.6);
+        }
+        @keyframes preloaderPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
         @keyframes preloaderFade {
             to { opacity: 0; visibility: hidden; }
@@ -718,8 +748,10 @@
 </style>
 </head>
 <body class="font-sans selection:bg-matrix-DEFAULT selection:text-black">
-    <!-- Preloader - CSS-only fade -->
-    <div id="preloader"></div>
+    <!-- Preloader - CSS-only fade with logo -->
+    <div id="preloader">
+        <span class="preloader-logo">Content<span class="preloader-dot"></span>ZVD</span>
+    </div>
     <!-- Global Fixed Backgrounds -->
     <!-- SVG filter for liquid/plasma distortion -->
     <svg width="0" height="0" style="position:absolute">
@@ -1497,9 +1529,9 @@
             </div>
 
             <!-- Guarantee Block -->
-            <div class="section-animated-element max-w-4xl mx-auto mt-8 guarantee-block flex items-start gap-4" style="animation-delay: 0.8s;">
-                <span class="text-3xl flex-shrink-0 mt-0.5">🛡</span>
-                <p class="text-sm md:text-base text-gray-300 leading-relaxed">
+            <div class="section-animated-element max-w-4xl mx-auto mt-8 guarantee-block flex items-center justify-center gap-4" style="animation-delay: 0.8s;">
+                <span class="text-3xl flex-shrink-0">🛡</span>
+                <p class="text-sm md:text-base text-gray-300 leading-relaxed text-center">
                     <span data-i18n="guarantee" class="text-white font-bold">Обидва пакети</span> <span data-i18n="guarantee_text">— гарантія</span> <span data-i18n="guarantee_views" class="text-matrix-DEFAULT font-bold text-glow-matrix">1 000 000 переглядів</span> <span data-i18n="guarantee_period">за 30 днів.</span>
                 </p>
             </div>
@@ -1723,13 +1755,13 @@
                 }, { threshold: 0.05 });
                 observer.observe(heroSection);
 
-                // Resize handling
-                let resizeTimer;
+                // Resize handling — ignore iOS toolbar height changes (only width matters)
+                let lastWidth = window.innerWidth;
                 window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => {
-                        if (animId) { buildColumns(); ctx.clearRect(0, 0, canvas.width, canvas.height); }
-                    }, 200);
+                    const newWidth = window.innerWidth;
+                    if (newWidth === lastWidth) return; // iOS toolbar toggle, skip
+                    lastWidth = newWidth;
+                    if (animId) { buildColumns(); ctx.clearRect(0, 0, canvas.width, canvas.height); }
                 });
 
                 // Init
