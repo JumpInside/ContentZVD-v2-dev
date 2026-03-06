@@ -1808,10 +1808,16 @@
                 }, { threshold: 0.05 });
                 observer.observe(heroSection);
 
-                // DEBUG: Click on image to get normalized coordinates
+                // DEBUG: Click on image to get normalized coordinates (on-screen overlay)
                 // Remove this block after calibration
                 img.style.pointerEvents = 'auto';
                 img.style.cursor = 'crosshair';
+                const debugClicks = [];
+                let debugOverlay = document.createElement('div');
+                debugOverlay.id = 'lens-debug-overlay';
+                debugOverlay.style.cssText = 'position:fixed;top:10px;left:10px;z-index:99999;background:rgba(0,0,0,0.9);color:#00ff41;font-family:monospace;font-size:14px;padding:12px 16px;border-radius:8px;border:1px solid #00ff41;max-width:500px;pointer-events:none;';
+                debugOverlay.innerHTML = '<b>LENS DEBUG</b><br>Click center of LEFT lens, then RIGHT lens';
+                document.body.appendChild(debugOverlay);
                 img.addEventListener('click', function(e) {
                     const imgRect = img.getBoundingClientRect();
                     const imgW = imgRect.width, imgH = imgRect.height;
@@ -1830,8 +1836,17 @@
                     const clickY = e.clientY - imgRect.top;
                     const normX = ((clickX - objOffX) / rW).toFixed(4);
                     const normY = ((clickY - objOffY) / rH).toFixed(4);
-                    console.log(`%c LENS DEBUG: normX=${normX}, normY=${normY}`, 'color: #00ff41; font-size: 16px; font-weight: bold;');
-                    console.log(`  Click pixel: (${clickX.toFixed(0)}, ${clickY.toFixed(0)}) | Rendered img: ${rW.toFixed(0)}×${rH.toFixed(0)} | Fit: ${fit} | objOff: (${objOffX.toFixed(0)}, ${objOffY.toFixed(0)})`);
+                    debugClicks.push({ normX, normY, px: `${clickX.toFixed(0)},${clickY.toFixed(0)}` });
+                    let html = `<b>LENS DEBUG</b> (rW=${rW.toFixed(0)} rH=${rH.toFixed(0)} fit=${fit})<br>`;
+                    debugClicks.forEach((c, i) => {
+                        html += `<span style="color:${i===0?'#ff4444':'#44ff44'}">${i===0?'LEFT':'RIGHT'}: normX=${c.normX} normY=${c.normY} (px:${c.px})</span><br>`;
+                    });
+                    if (debugClicks.length >= 2) {
+                        html += '<br><b style="color:yellow">Both lenses captured! Screenshot this overlay.</b>';
+                    } else {
+                        html += '<br>Now click center of RIGHT lens';
+                    }
+                    debugOverlay.innerHTML = html;
                 });
                 // END DEBUG
 
