@@ -1647,11 +1647,11 @@
                 const img = canvas.parentElement.querySelector('img');
                 if (!img) return;
 
-                // Lens positions in normalized SOURCE image coordinates (0–1)
-                // Morpheus medium shot: glasses at ~24% from top, centered
+                // Lens positions in normalized coordinates (0–1) relative to rendered image
+                // Calibrated via debug click handler on 2026-03-06
                 const LENS_CONFIG = [
-                    { cx: 0.44, cy: 0.24, rx: 0.042, ry: 0.024 },   // left lens
-                    { cx: 0.56, cy: 0.24, rx: 0.042, ry: 0.024 }    // right lens
+                    { cx: 0.4525, cy: 0.1425, rx: 0.026, ry: 0.0191 },   // left lens
+                    { cx: 0.5665, cy: 0.1425, rx: 0.028, ry: 0.0191 }    // right lens
                 ];
 
                 const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
@@ -1781,33 +1781,7 @@
                 }, { threshold: 0.05 });
                 observer.observe(heroSection);
 
-                // DEBUG: Click on image to get normalized coordinates
-                // Remove this block after calibration
-                img.style.pointerEvents = 'auto';
-                img.style.cursor = 'crosshair';
-                img.addEventListener('click', function(e) {
-                    const imgRect = img.getBoundingClientRect();
-                    const contRect = canvas.parentElement.getBoundingClientRect();
-                    const imgW = imgRect.width, imgH = imgRect.height;
-                    const nW = img.naturalWidth || 1000, nH = img.naturalHeight || 1000;
-                    const isMd = window.matchMedia('(min-width: 768px)').matches;
-                    const fit = isMd ? 'contain' : 'cover';
-                    const cR = imgW / imgH, iR = nW / nH;
-                    let rW, rH;
-                    if (fit === 'contain') {
-                        if (cR > iR) { rH = imgH; rW = imgH * iR; } else { rW = imgW; rH = imgW / iR; }
-                    } else {
-                        if (cR > iR) { rW = imgW; rH = imgW / iR; } else { rH = imgH; rW = imgH * iR; }
-                    }
-                    const objOffX = (imgW - rW) / 2, objOffY = (imgH - rH) / 2;
-                    const clickX = e.clientX - imgRect.left;
-                    const clickY = e.clientY - imgRect.top;
-                    const normX = ((clickX - objOffX) / rW).toFixed(4);
-                    const normY = ((clickY - objOffY) / rH).toFixed(4);
-                    console.log(`%c LENS DEBUG: normX=${normX}, normY=${normY}`, 'color: #00ff41; font-size: 16px; font-weight: bold;');
-                    console.log(`  Click pixel: (${clickX.toFixed(0)}, ${clickY.toFixed(0)}) | Rendered img: ${rW.toFixed(0)}×${rH.toFixed(0)} | Fit: ${fit}`);
-                });
-                // END DEBUG
+
 
                 // Resize handling
                 let resizeTimer;
