@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Публічна оферта — CONTENT.ZVD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #020a02;
+            background-image:
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(34,197,94,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(34,197,94,0.04) 0%, transparent 60%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 96px; }
+
+        /* Logo */
+        .logo { text-decoration: none; color: #fff; font-weight: 900; font-size: 1.25rem; letter-spacing: 0.15em; display: inline-flex; align-items: center; }
+        .logo:hover { opacity: 0.8; }
+        .logo-dot { display: inline-block; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; margin: 0 2px; vertical-align: middle; }
+
+        /* Terminal label */
+        .terminal-label {
+            color: #22c55e; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.18em; margin: 40px 0 12px; display: inline-block;
+        }
+        .terminal-label::before { content: '> '; }
+        .terminal-label::after { content: '_'; animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Meta */
+        .meta { color: rgba(255,255,255,0.3); font-size: 13px; margin-bottom: 32px; }
+        .page-title { font-size: 2rem; font-weight: 900; color: #fff; margin: 8px 0 4px; letter-spacing: -0.01em; }
+
+        /* Section headings */
+        h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: #22c55e; font-weight: 700; margin: 40px 0 16px; }
+
+        /* Paragraphs */
+        p { color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.75; margin-bottom: 16px; }
+
+        /* Callout */
+        .callout {
+            background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2);
+            padding: 16px 20px; border-radius: 8px; margin: 20px 0;
+        }
+        .callout p { margin-bottom: 0; }
+        .callout-warn {
+            background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.25);
+            padding: 16px 20px; border-radius: 8px; margin: 20px 0;
+        }
+        .callout-warn p { margin-bottom: 0; }
+
+        /* Lists */
+        ul { list-style: none; padding: 0; margin: 16px 0; }
+        ul li { position: relative; padding-left: 20px; color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.75; margin-bottom: 8px; }
+        ul li::before { content: '›'; position: absolute; left: 0; color: #22c55e; font-weight: 700; }
+
+        /* Card */
+        .card {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 24px; margin: 20px 0;
+        }
+        .card p { margin-bottom: 6px; }
+        .card p:last-child { margin-bottom: 0; }
+
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #22c55e; font-weight: 700; text-align: left; padding: 10px 12px; }
+        td { color: rgba(255,255,255,0.65); font-size: 14px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        /* Footer */
+        .page-footer {
+            margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+        }
+        .page-footer .copy { color: rgba(255,255,255,0.3); font-size: 12px; }
+        .page-footer nav a { color: rgba(255,255,255,0.35); font-size: 12px; text-decoration: none; transition: color 0.2s; }
+        .page-footer nav a:hover { color: rgba(255,255,255,0.7); }
+        .page-footer nav .sep { color: rgba(255,255,255,0.15); margin: 0 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="logo">Content<span class="logo-dot"></span>ZVD</a>
+
+        <div class="terminal-label">ЮРИДИЧНІ ДОКУМЕНТИ</div>
+        <h1 class="page-title">Публічна оферта</h1>
+        <p class="meta">Редакція від 1 березня 2026 р. · Набирає чинності з моменту публікації</p>
+
+        <h2>01 · Загальні положення</h2>
+        <p>Цей документ є публічною офертою (далі — «Оферта») ФОП Вакуловська Ольга Володимирівна, ІПН 2825321946 (далі — «Виконавець»), адресованою будь-якій фізичній або юридичній особі (далі — «Замовник»), яка бажає отримати послуги з виробництва відеоконтенту для соціальних мереж.</p>
+        <p>Акцептом цієї Оферти є оплата послуг або подання заявки через сайт content-zvd.com. З моменту акцепту між Виконавцем і Замовником укладається Договір на умовах цієї Оферти.</p>
+        <div class="callout">
+            <p>Уважно прочитайте цю Оферту перед оплатою. Оплачуючи послуги, ви автоматично погоджуєтесь з усіма її умовами.</p>
+        </div>
+
+        <h2>02 · Предмет договору</h2>
+        <p>Виконавець зобов'язується надати Замовнику послуги з виробництва відеоконтенту (Reels) для розміщення в соціальній мережі Instagram згідно з обраним тарифом:</p>
+        <ul>
+            <li><strong>Профі — $500/міс:</strong> виробництво 3–5 Reels щодня, монтаж, підбір форматів, аналітика, публікація за бажанням клієнта.</li>
+            <li><strong>Експерт — $990/міс:</strong> все з тарифу «Профі» + стратегічна сесія, контент під вузьку нішу, персональний проджект-менеджер, пріоритетні правки.</li>
+        </ul>
+        <p>Конкретний обсяг послуг, графік виробництва та деталі погоджуються з Замовником індивідуально після оплати на «нульовому дні» (день брифінгу).</p>
+
+        <h2>03 · Гарантії</h2>
+        <p>Виконавець гарантує досягнення 1 000 000 переглядів відеоконтенту Замовника в Instagram. Якщо зазначений результат не досягнуто протягом 30 календарних днів, Виконавець продовжує роботу над акаунтом Замовника до досягнення гарантованого показника — без додаткової оплати за цей період.</p>
+        <p>Таким чином, Замовник у будь-якому разі отримує результат: 1 000 000 переглядів — питання лише у часі досягнення.</p>
+        <div class="callout">
+            <p>Гарантія поширюється за умови: (а) своєчасного надання Замовником необхідних матеріалів; (б) своєчасного погодження та публікації контенту; (в) відсутності блокувань акаунту з боку Instagram, спричинених діями Замовника.</p>
+        </div>
+
+        <h2>04 · Порядок оплати</h2>
+        <p>Оплата здійснюється у розмірі 100% передоплати до початку надання послуг. Валюта розрахунків: долар США (USD) або євро (EUR) за домовленістю. Реквізити для оплати надаються менеджером після подання заявки.</p>
+        <p>Повернення коштів можливе лише до початку «нульового дня» (брифінгу). Після початку надання послуг кошти поверненню не підлягають, якщо інше не погоджено окремо.</p>
+
+        <h2>05 · Права та обов'язки сторін</h2>
+        <p><strong>Виконавець зобов'язується:</strong></p>
+        <ul>
+            <li>Виробляти відеоконтент відповідно до обраного тарифу та погодженого брифу.</li>
+            <li>Надавати готові Reels на погодження Замовнику у встановлені строки.</li>
+            <li>Вносити правки відповідно до коментарів Замовника згідно тарифу.</li>
+            <li>Зберігати конфіденційність даних Замовника.</li>
+        </ul>
+        <p><strong>Замовник зобов'язується:</strong></p>
+        <ul>
+            <li>Своєчасно надавати вихідні матеріали відповідно до погодженого брифу.</li>
+            <li>Погоджувати готовий контент протягом 24 годин з моменту надання.</li>
+            <li>Публікувати затверджений контент самостійно або надати доступ Виконавцю.</li>
+            <li>Своєчасно здійснювати оплату.</li>
+        </ul>
+
+        <h2>06 · Інтелектуальна власність</h2>
+        <p>Всі матеріали, вироблені Виконавцем у межах цього Договору, передаються Замовнику після повної оплати. Виконавець має право використовувати результати роботи у власному портфоліо, якщо Замовник не заперечує проти цього окремою угодою.</p>
+
+        <h2>07 · Конфіденційність</h2>
+        <p>Сторони зобов'язуються не розголошувати конфіденційну інформацію одна одної третім особам без письмової згоди. Конфіденційною вважається будь-яка інформація, отримана в ході виконання цього Договору.</p>
+
+        <h2>08 · Строк дії та розірвання</h2>
+        <p>Договір укладається на 1 (один) місяць з моменту початку надання послуг та автоматично поновлюється при повторній оплаті. Кожна зі Сторін має право розірвати Договір, надіславши повідомлення за 7 (сім) календарних днів до закінчення поточного місяця.</p>
+
+        <h2>09 · Вирішення спорів</h2>
+        <p>Всі спори вирішуються шляхом переговорів. У разі неможливості досягнення згоди спір передається на розгляд відповідно до законодавства України за місцем реєстрації Виконавця.</p>
+
+        <h2>10 · Реквізити Виконавця</h2>
+        <div class="card">
+            <p><strong style="color:#f0f0f0;">ФОП Вакуловська Ольга Володимирівна</strong></p>
+            <p>ІПН: 2825321946</p>
+            <p>Email: content.zvd@gmail.com</p>
+        </div>
+
+        <footer class="page-footer">
+            <span class="copy">© 2026 CONTENT.ZVD</span>
+            <nav>
+                <a href="/privacy.html">Конфіденційність</a><span class="sep">·</span>
+                <a href="/disclaimer.html">Відмова від відповідальності</a><span class="sep">·</span>
+                <a href="/consent.html">Згода на розсилку</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>
