@@ -9,7 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/c7708832-5848-45e7-955a-de1301e8913a/1772474148679-e4856807/______________2026-03-02___19.42.12.png">
-    <script>if('scrollRestoration' in history) history.scrollRestoration='manual'; window.scrollTo(0,0);</script>
+    <script>
+        if('scrollRestoration' in history) history.scrollRestoration='manual';
+        if(location.hash) history.replaceState(null,'',location.pathname+location.search);
+        window.scrollTo(0,0);
+    </script>
     <style>
         /* Fix iOS Safari 100vh jump when address bar shows/hides */
         @supports (min-height: 100svh) {
@@ -804,7 +808,7 @@
                 <!-- The Pills (CTAs) -->
                 <div id="action-buttons" class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-16 w-full opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <!-- Blue Pill -->
-                    <a href="#section-pain-points" id="btn-sleep" class="group btn-holo btn-holo-blue w-full sm:w-auto min-w-[240px] h-[64px] flex items-center justify-center shadow-[0_0_30px_rgba(0,150,255,0.15)] hover:shadow-[0_0_50px_rgba(0,240,255,0.4)]">
+                    <a href="#section-pain-points" id="btn-sleep" onclick="event.preventDefault();document.getElementById('section-pain-points').scrollIntoView({behavior:'smooth'})" class="group btn-holo btn-holo-blue w-full sm:w-auto min-w-[240px] h-[64px] flex items-center justify-center shadow-[0_0_30px_rgba(0,150,255,0.15)] hover:shadow-[0_0_50px_rgba(0,240,255,0.4)]">
                         <div class="btn-holo-inner">
                             <div class="btn-holo-gradient"></div>
                             <div class="btn-holo-grain"></div>
@@ -815,7 +819,7 @@
                         <span data-i18n="btn_sleep" class="relative z-20 text-white font-black tracking-[0.2em] uppercase text-xl group-hover:text-holo-blue transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Sleep</span>
                     </a>
                     <!-- Red Pill -->
-                    <a href="#section-value-prop" id="btn-wakeup" class="group btn-holo btn-holo-red w-full sm:w-auto min-w-[240px] h-[64px] flex items-center justify-center shadow-[0_0_30px_rgba(220,38,38,0.15)] hover:shadow-[0_0_50px_rgba(255,0,85,0.4)]">
+                    <a href="#section-value-prop" id="btn-wakeup" onclick="event.preventDefault();document.getElementById('section-value-prop').scrollIntoView({behavior:'smooth'})" class="group btn-holo btn-holo-red w-full sm:w-auto min-w-[240px] h-[64px] flex items-center justify-center shadow-[0_0_30px_rgba(220,38,38,0.15)] hover:shadow-[0_0_50px_rgba(255,0,85,0.4)]">
                         <div class="btn-holo-inner">
                             <div class="btn-holo-gradient"></div>
                             <div class="btn-holo-grain"></div>
