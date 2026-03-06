@@ -1,2 +1,12 @@
 node_modules/
 public/styles.css
+.env
+.env.*
+.env.local
+.env.production
+*.pem
+*.key
+*.secret
+credentials.json
+.DS_Store
+.vercel

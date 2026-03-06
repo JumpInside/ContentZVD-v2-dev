@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /lang/
+Disallow: /.well-known/
