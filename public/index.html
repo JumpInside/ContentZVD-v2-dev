@@ -739,6 +739,35 @@
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
     
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #preloader canvas {
+            position: absolute;
+            inset: 0;
+        }
+        .preloader-spinner {
+            position: relative;
+            z-index: 10;
+            animation: spin 4s linear infinite;
+        }
+        .preloader-spinner text {
+            fill: #00FF41;
+            font-size: 15px;
+            font-weight: 900;
+            font-family: 'Inter', monospace;
+            letter-spacing: 6px;
+            filter: drop-shadow(0 0 6px rgba(0,255,65,0.6));
+        }
+
         /* Language Switcher */
         .lang-btn { color: rgba(255,255,255,0.4); }
         .lang-btn:hover { color: rgba(255,255,255,0.7); }
@@ -756,7 +785,45 @@
         .faq-item.active .faq-answer { max-height: 300px; padding: 0 clamp(16px, 4vw, 24px) clamp(16px, 4vw, 20px); }
 </style>
 </head>
-<body class="font-sans selection:bg-matrix-DEFAULT selection:text-black">
+<body class="font-sans selection:bg-matrix-DEFAULT selection:text-black" style="overflow:hidden;">
+    <!-- Preloader -->
+    <div id="preloader">
+        <canvas id="matrix-rain"></canvas>
+        <svg class="preloader-spinner" viewBox="0 0 200 200" width="180" height="180">
+            <defs>
+                <path id="circlePath" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
+            </defs>
+            <text><textPath href="#circlePath">Content.ZVD  Content.ZVD  </textPath></text>
+        </svg>
+    </div>
+    <script>
+    (function(){
+        var c=document.getElementById('matrix-rain'),x=c.getContext('2d');
+        c.width=window.innerWidth;c.height=window.innerHeight;
+        var chars='アイウエオカキクケコ0123456789{}[]<>/;:=+*-_|~@#$%&()ABCDEFabcdef';
+        var fs=14,cols=Math.floor(c.width/fs),drops=[];
+        for(var i=0;i<cols;i++)drops[i]=Math.random()*c.height/fs|0;
+        var mi=setInterval(function(){
+            x.fillStyle='rgba(0,0,0,0.06)';x.fillRect(0,0,c.width,c.height);
+            x.font=fs+'px monospace';
+            for(var i=0;i<drops.length;i++){
+                var ch=chars[Math.random()*chars.length|0];
+                var g=155+Math.random()*100|0;
+                x.fillStyle='rgba(0,'+g+',30,'+(0.4+Math.random()*0.6).toFixed(2)+')';
+                x.fillText(ch,i*fs,drops[i]*fs);
+                if(drops[i]*fs>c.height&&Math.random()>0.975)drops[i]=0;
+                drops[i]++;
+            }
+        },33);
+        setTimeout(function(){
+            var p=document.getElementById('preloader');
+            p.style.transition='opacity 0.5s ease';
+            p.style.opacity='0';
+            document.body.style.overflow='';
+            setTimeout(function(){p.remove();clearInterval(mi);},500);
+        },2000);
+    })();
+    </script>
     <!-- Global Fixed Backgrounds -->
     <!-- SVG filter for liquid/plasma distortion -->
     <svg width="0" height="0" style="position:absolute">
@@ -841,19 +908,13 @@
                 <div class="section-animated-element w-full bg-white/[0.04] border border-white/10 rounded-3xl p-8 sm:p-10 md:p-16 backdrop-blur-xl shadow-[0_0_50px_rgba(0,200,60,0.05)] relative overflow-hidden" style="animation-delay: 0s;">
                     <div class="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-matrix-DEFAULT/50 to-transparent"></div>
                     <div class="flex flex-col gap-6 text-center">
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-                            <span data-i18n="vp_title_1">Ми не просто робимо вірусні Reels на</span>
-                            <span data-i18n="vp_title_accent" class="block sm:inline mt-2 sm:mt-0 text-matrix-DEFAULT text-glow-matrix">
-                                десятки мільйонів переглядів.
-                            </span>
-                        </h2>
-                        <p data-i18n="vp_subtitle" class="text-base sm:text-lg md:text-xl text-gray-400 font-medium tracking-wide leading-relaxed max-w-4xl mx-auto mt-4">
+                        <p data-i18n="vp_subtitle" class="text-base sm:text-lg md:text-xl text-gray-400 font-medium tracking-wide leading-relaxed max-w-4xl mx-auto">
                             Ми навчаємо алгоритм Instagram любити ваш акаунт.
                         </p>
                         <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-black tracking-tight leading-[1.15] max-w-4xl mx-auto mt-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
                             <span data-i18n="vp_big_text_1">Ми запускаємо контент маркетинг на вашій сторінці який дає вам більше</span>
-                            <span data-i18n="vp_big_text_accent" class="text-matrix-DEFAULT text-glow-matrix">продажів, підписників</span>
-                            <span data-i18n="vp_big_text_2">та впізнаваність аудиторії</span>
+                            <span data-i18n="vp_big_text_accent" class="text-matrix-DEFAULT text-glow-matrix"> продажів, підписників</span>
+                            <span data-i18n="vp_big_text_2"> та впізнаваність аудиторії</span>
                         </p>
                     </div>
                 </div>
@@ -861,15 +922,13 @@
                 <div class="flex flex-col items-center gap-8 w-full">
                     <!-- Timer Box -->
                     <div class="section-animated-element flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white/[0.04] border border-white/10 px-6 sm:px-8 py-4 rounded-xl backdrop-blur-xl shadow-[0_0_20px_rgba(0,200,60,0.05)]" style="animation-delay: 0.2s;">
-                        <div class="flex items-center gap-3">
-                            <span class="relative flex h-3.5 w-3.5">
+                        <div class="flex items-center gap-2 sm:gap-3">
+                            <span class="relative flex h-3.5 w-3.5 shrink-0">
                               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-matrix-DEFAULT opacity-75"></span>
                               <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-matrix-DEFAULT shadow-[0_0_8px_#00FF41]"></span>
                             </span>
-                            <span class="text-gray-300 font-bold text-sm sm:text-base tracking-wider uppercase whitespace-nowrap">
-                                <span data-i18n="vp_spots_label">Залишилося місць на сьогодні:</span>
-                                <span id="spots-val" class="text-neon-red text-3xl sm:text-4xl ml-1 font-black drop-shadow-[0_0_8px_rgba(255,0,85,0.8)] text-glow-red">5</span>
-                            </span>
+                            <span data-i18n="vp_spots_label" class="text-gray-300 font-bold text-sm sm:text-base tracking-wider uppercase whitespace-nowrap">Залишилося місць на сьогодні:</span>
+                            <span id="spots-val" class="text-neon-red text-3xl sm:text-4xl font-black drop-shadow-[0_0_8px_rgba(255,0,85,0.8)] text-glow-red leading-none">5</span>
                         </div>
                         <div class="hidden sm:block w-px h-8 bg-matrix-DEFAULT/30"></div>
                         <div class="sm:hidden w-16 h-px bg-matrix-DEFAULT/30 my-1"></div>
@@ -1682,7 +1741,7 @@
                     }, 500);
                 }
             }
-            setTimeout(typeWriterHero, 1000);
+            setTimeout(typeWriterHero, 2600);
             // --- 4. Value Proposition - Timer & Holo Button ---
             // Kyiv time helpers (UTC+2 / UTC+3 auto via timezone)
             function getKyivNow() {
@@ -1762,7 +1821,7 @@
                     typedElementPain.textContent += headlineTextPain.charAt(charIndexPain);
                     charIndexPain++;
                     cursorPain.style.opacity = Math.random() > 0.5 ? '1' : '0.5';
-                    setTimeout(typeWriterPain, 60 + (Math.random() * 40));
+                    setTimeout(typeWriterPain, 18 + (Math.random() * 15));
                 } else {
                     cursorPain.style.opacity = '1';
                     cursorPain.classList.add('animate-pulse-fast');
@@ -1774,10 +1833,10 @@
             const painObserver = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting && !painTypingStarted) {
                     painTypingStarted = true;
-                    setTimeout(typeWriterPain, 600); // slight delay after scrolling into view
+                    setTimeout(typeWriterPain, 150); // quick start after scrolling into view
                     painObserver.disconnect();
                 }
-            }, { threshold: 0.3 });
+            }, { threshold: 0.15 });
             painObserver.observe(painSection);
         });
 
@@ -1947,15 +2006,17 @@
                 btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
             });
 
-            // Re-type hero text if already typed
-            if (typeof charIndexHero !== 'undefined' && typedContentHero) {
-                typedContentHero.textContent = data.hero_typed || '';
+            // Update hero typed text
+            const _heroEl = document.getElementById('typed-hero');
+            if (_heroEl && _heroEl.textContent.length > 0) {
+                _heroEl.textContent = data.hero_typed || '';
             }
 
-            // Re-type pain headline if already typed
-            if (typeof painTypingStarted !== 'undefined' && painTypingStarted && typedElementPain) {
+            // Update pain headline typed text
+            const _painEl = document.getElementById('typed-pain');
+            if (_painEl && _painEl.textContent.length > 0) {
                 const txt = data.pain_headline || '';
-                typedElementPain.textContent = txt.replace('_', '');
+                _painEl.textContent = txt.replace('_', '');
             }
         }
 
