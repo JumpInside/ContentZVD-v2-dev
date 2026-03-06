@@ -687,8 +687,34 @@
             inset: 0;
             z-index: 9999;
             background: #000;
-            animation: preloaderFade 0.5s 0.3s forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: preloaderFade 0.5s 0.8s forwards;
             pointer-events: none;
+        }
+        #preloader .preloader-logo {
+            font-family: inherit;
+            font-weight: 900;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            letter-spacing: 0.15em;
+            color: #fff;
+            filter: drop-shadow(0 0 12px rgba(255,255,255,0.6));
+            animation: preloaderPulse 1.2s ease-in-out infinite;
+        }
+        #preloader .preloader-dot {
+            display: inline-block;
+            width: 0.3em;
+            height: 0.3em;
+            background: #cc2233;
+            border-radius: 50%;
+            margin: 0 0.05em;
+            vertical-align: middle;
+            box-shadow: 0 0 8px rgba(204,34,51,0.6);
+        }
+        @keyframes preloaderPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
         @keyframes preloaderFade {
             to { opacity: 0; visibility: hidden; }
@@ -718,8 +744,10 @@
 </style>
 </head>
 <body class="font-sans selection:bg-matrix-DEFAULT selection:text-black">
-    <!-- Preloader - CSS-only fade -->
-    <div id="preloader"></div>
+    <!-- Preloader - CSS-only fade with logo -->
+    <div id="preloader">
+        <span class="preloader-logo">Content<span class="preloader-dot"></span>ZVD</span>
+    </div>
     <!-- Global Fixed Backgrounds -->
     <!-- SVG filter for liquid/plasma distortion -->
     <svg width="0" height="0" style="position:absolute">
