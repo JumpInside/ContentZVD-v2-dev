@@ -1647,10 +1647,11 @@
                 const img = canvas.parentElement.querySelector('img');
                 if (!img) return;
 
-                // Lens positions in normalized image coordinates (0–1)
+                // Lens positions in normalized coordinates (0–1) relative to rendered image
+                // Calibrated via debug click handler on 2026-03-06
                 const LENS_CONFIG = [
-                    { cx: 0.405, cy: 0.385, rx: 0.075, ry: 0.045 },
-                    { cx: 0.595, cy: 0.385, rx: 0.075, ry: 0.045 }
+                    { cx: 0.4525, cy: 0.1425, rx: 0.026, ry: 0.0191 },   // left lens
+                    { cx: 0.5665, cy: 0.1425, rx: 0.028, ry: 0.0191 }    // right lens
                 ];
 
                 const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
@@ -1661,41 +1662,53 @@
                 let lastTime = 0;
                 let fontSize = 10;
 
-                function getRenderedImageRect() {
-                    const cW = img.clientWidth, cH = img.clientHeight;
-                    const nW = img.naturalWidth || 1000, nH = img.naturalHeight || 1000;
-                    const isMd = window.matchMedia('(min-width: 768px)').matches;
-                    const fit = isMd ? 'contain' : 'cover';
-                    const cR = cW / cH, iR = nW / nH;
-                    let rW, rH;
-                    if (fit === 'contain') {
-                        if (cR > iR) { rH = cH; rW = cH * iR; }
-                        else { rW = cW; rH = cW / iR; }
-                    } else {
-                        if (cR > iR) { rW = cW; rH = cW / iR; }
-                        else { rH = cH; rW = cH * iR; }
-                    }
-                    return { renderW: rW, renderH: rH, offsetX: (cW - rW) / 2, offsetY: (cH - rH) / 2 };
-                }
-
                 function buildColumns() {
                     const container = canvas.parentElement;
                     const dpr = window.devicePixelRatio || 1;
-                    canvas.width = container.clientWidth * dpr;
-                    canvas.height = container.clientHeight * dpr;
-                    ctx.scale(dpr, dpr);
+                    const contW = container.clientWidth, contH = container.clientHeight;
+                    canvas.width = contW * dpr;
+                    canvas.height = contH * dpr;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-                    const rect = getRenderedImageRect();
-                    fontSize = Math.max(7, rect.renderW * 0.011);
+                    // Get actual image element position within the container
+                    const contRect = container.getBoundingClientRect();
+                    const imgRect = img.getBoundingClientRect();
+                    const imgLeft = imgRect.left - contRect.left;
+                    const imgTop = imgRect.top - contRect.top;
+                    const imgW = imgRect.width;
+                    const imgH = imgRect.height;
+
+                    // Calculate object-fit rendered size within the img element
+                    const nW = img.naturalWidth || 1000, nH = img.naturalHeight || 1000;
+                    const isMd = window.matchMedia('(min-width: 768px)').matches;
+                    const fit = isMd ? 'contain' : 'cover';
+                    const cR = imgW / imgH, iR = nW / nH;
+                    let rW, rH;
+                    if (fit === 'contain') {
+                        if (cR > iR) { rH = imgH; rW = imgH * iR; }
+                        else { rW = imgW; rH = imgW / iR; }
+                    } else {
+                        if (cR > iR) { rW = imgW; rH = imgW / iR; }
+                        else { rH = imgH; rW = imgH * iR; }
+                    }
+                    // Object-fit offset within the img element
+                    const objOffX = (imgW - rW) / 2;
+                    const objOffY = (imgH - rH) / 2;
+
+                    // Base: img position in container + object-fit offset
+                    const baseX = imgLeft + objOffX;
+                    const baseY = imgTop + objOffY;
+
+                    fontSize = Math.max(6, rW * 0.008);
                     lenses = [];
 
                     for (const lens of LENS_CONFIG) {
-                        const cx = rect.offsetX + lens.cx * rect.renderW;
-                        const cy = rect.offsetY + lens.cy * rect.renderH;
-                        const rx = lens.rx * rect.renderW;
-                        const ry = lens.ry * rect.renderH;
+                        const cx = baseX + lens.cx * rW;
+                        const cy = baseY + lens.cy * rH;
+                        const rx = lens.rx * rW;
+                        const ry = lens.ry * rH;
                         const cols = [];
-                        const colW = fontSize * 0.75;
+                        const colW = fontSize * 0.7;
                         for (let x = cx - rx; x < cx + rx; x += colW) {
                             const dx = (x - cx) / rx;
                             if (Math.abs(dx) > 1) continue;
@@ -1705,7 +1718,7 @@
                                 topY: cy - yExt,
                                 bottomY: cy + yExt,
                                 currentY: cy - yExt + Math.random() * yExt * 2,
-                                speed: 0.4 + Math.random() * 1.2
+                                speed: 0.3 + Math.random() * 1.0
                             });
                         }
                         lenses.push({ cx, cy, rx, ry, columns: cols });
@@ -1736,17 +1749,15 @@
 
                         for (const col of lens.columns) {
                             const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
-                            // Bright leading char
                             ctx.fillStyle = '#ccffcc';
                             ctx.fillText(ch, col.x, col.currentY);
-                            // Dimmer trail char
                             ctx.fillStyle = 'rgba(0, 255, 65, 0.7)';
                             ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], col.x, col.currentY - fontSize);
 
                             col.currentY += fontSize * col.speed;
                             if (col.currentY > col.bottomY) {
                                 col.currentY = col.topY;
-                                col.speed = 0.4 + Math.random() * 1.2;
+                                col.speed = 0.3 + Math.random() * 1.0;
                             }
                         }
                         ctx.restore();
@@ -1769,6 +1780,8 @@
                     else stop();
                 }, { threshold: 0.05 });
                 observer.observe(heroSection);
+
+
 
                 // Resize handling
                 let resizeTimer;
