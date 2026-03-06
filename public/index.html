@@ -1766,7 +1766,7 @@
                 document.getElementById('form-success').classList.add('hidden');
                 document.getElementById('booking-form').reset();
                 document.getElementById('form-submit-btn').disabled = false;
-                document.getElementById('form-submit-btn').textContent = (currentLangData && currentLangData.modal_submit) || 'Відправити заявку';
+                document.getElementById('form-submit-btn').textContent = (currentLangData && currentLangData.modal_submit) || 'Submit request';
                 document.getElementById('form-submit-btn').classList.remove('hidden');
                 document.getElementById('field-plan').value = '';
                 selectPlan('');
@@ -1785,13 +1785,13 @@
             errorEl.classList.add('hidden');
 
             if (!name || !phone || !instagram) {
-                errorEl.textContent = (currentLangData && currentLangData.modal_error_fill) || 'Будь ласка, заповніть усі поля';
+                errorEl.textContent = (currentLangData && currentLangData.modal_error_fill) || 'Please fill in all fields';
                 errorEl.classList.remove('hidden');
                 return false;
             }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = (currentLangData && currentLangData.modal_sending) || 'Відправляємо...';
+            submitBtn.textContent = (currentLangData && currentLangData.modal_sending) || 'Sending...';
 
             fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
@@ -1810,10 +1810,10 @@
                 submitBtn.classList.add('hidden');
                 setTimeout(closeBookingModal, 3000);
             }).catch(() => {
-                errorEl.textContent = (currentLangData && currentLangData.modal_error_send) || 'Помилка відправки. Спробуйте ще раз.';
+                errorEl.textContent = (currentLangData && currentLangData.modal_error_send) || 'Sending error. Please try again.';
                 errorEl.classList.remove('hidden');
                 submitBtn.disabled = false;
-                submitBtn.textContent = (currentLangData && currentLangData.modal_submit) || 'Відправити заявку';
+                submitBtn.textContent = (currentLangData && currentLangData.modal_submit) || 'Submit request';
             });
 
             return false;
@@ -1932,7 +1932,7 @@
         <div class="max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-16">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
                 <div>
-                    <a href="#" class="text-white font-black text-xl tracking-widest inline-flex items-center">Content<span class="logo-dot"></span>ZVD</a>
+                    <a href="#" class="text-white flex items-baseline font-black text-2xl md:text-3xl tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-colors hover:scale-105 transform origin-left duration-300">Content<span class="logo-dot"></span>ZVD</a>
                     <nav class="flex flex-col gap-2.5 mt-4">
                         <a href="/disclaimer.html" class="text-xs text-gray-500 hover:text-gray-300 transition-colors" data-i18n="footer_disclaimer">Відмова від відповідальності</a>
                         <a href="/oferta.html" class="text-xs text-gray-500 hover:text-gray-300 transition-colors" data-i18n="footer_offer">Публічна оферта</a>
