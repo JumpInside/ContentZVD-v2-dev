@@ -4,53 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONTENT.ZVD - Unified Experience</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
-                    },
-                    colors: {
-                        matrix: {
-                            light: '#b3ffb3',
-                            DEFAULT: '#00FF41',
-                            dark: '#008F11',
-                            bg: '#030303'
-                        },
-                        neon: {
-                            blue: '#00F0FF',
-                            cyan: '#00FFFF',
-                            red: '#FF0055',
-                            purple: '#8b5cf6'
-                        }
-                    },
-                    animation: {
-                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'spin-slow': 'spin 4s linear infinite',
-                        'glow-pulse': 'glowPulse 3s ease-in-out infinite alternate',
-                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        glowPulse: {
-                            '0%': { filter: 'drop-shadow(0 0 5px rgba(0, 240, 255, 0.5))' },
-                            '100%': { filter: 'drop-shadow(0 0 15px rgba(0, 240, 255, 0.9))' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/c7708832-5848-45e7-955a-de1301e8913a/1772474148679-e4856807/______________2026-03-02___19.42.12.png">
     <style>
         body {
             background-color: #000000;
@@ -82,8 +40,10 @@
         .aurora-blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            will-change: transform;
+            filter: blur(50px);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .aurora-blob { animation: none !important; }
         }
         .aurora-blob--1 {
             width: 550px;
@@ -112,24 +72,6 @@
             opacity: 0.5;
             animation: auroraFloat3 30s ease-in-out infinite alternate;
         }
-        .aurora-blob--4 {
-            width: 380px;
-            height: 380px;
-            background: radial-gradient(circle, rgba(40,255,90,0.65) 0%, rgba(0,200,50,0.2) 50%, transparent 70%);
-            top: 15%;
-            right: 20%;
-            opacity: 0.5;
-            animation: auroraFloat4 35s ease-in-out infinite alternate;
-        }
-        .aurora-blob--5 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0,240,55,0.6) 0%, rgba(0,180,40,0.25) 40%, transparent 70%);
-            bottom: 20%;
-            left: -5%;
-            opacity: 0.45;
-            animation: auroraFloat5 26s ease-in-out infinite alternate;
-        }
         @keyframes auroraFloat1 {
             0% { transform: translate(0, 0) scale(1); }
             33% { transform: translate(100px, 80px) scale(1.2); }
@@ -147,18 +89,6 @@
             33% { transform: translate(80px, -90px) scale(1.25); }
             66% { transform: translate(-100px, 50px) scale(0.9); }
             100% { transform: translate(30px, -40px) scale(1.1); }
-        }
-        @keyframes auroraFloat4 {
-            0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-70px, 100px) scale(1.1); }
-            66% { transform: translate(90px, -60px) scale(0.95); }
-            100% { transform: translate(-40px, -80px) scale(1.2); }
-        }
-        @keyframes auroraFloat5 {
-            0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(110px, -40px) scale(1.15); }
-            66% { transform: translate(-50px, 80px) scale(0.85); }
-            100% { transform: translate(60px, 30px) scale(1.05); }
         }
         /* Typography Utilities */
         .text-glow-matrix {
@@ -739,33 +669,17 @@
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
     
-        /* Preloader */
+        /* Preloader - lightweight CSS fade */
         #preloader {
             position: fixed;
             inset: 0;
             z-index: 9999;
             background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            animation: preloaderFade 0.5s 0.3s forwards;
+            pointer-events: none;
         }
-        #preloader canvas {
-            position: absolute;
-            inset: 0;
-        }
-        .preloader-spinner {
-            position: relative;
-            z-index: 10;
-            animation: spin 4s linear infinite;
-        }
-        .preloader-spinner text {
-            fill: #00FF41;
-            font-size: 15px;
-            font-weight: 900;
-            font-family: 'Inter', monospace;
-            letter-spacing: 6px;
-            filter: drop-shadow(0 0 6px rgba(0,255,65,0.6));
+        @keyframes preloaderFade {
+            to { opacity: 0; visibility: hidden; }
         }
 
         /* Language Switcher */
@@ -783,54 +697,22 @@
         .faq-item.active .faq-chevron { transform: rotate(180deg); color: rgba(0, 255, 65, 0.8); }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s; padding: 0 clamp(16px, 4vw, 24px); }
         .faq-item.active .faq-answer { max-height: 300px; padding: 0 clamp(16px, 4vw, 24px) clamp(16px, 4vw, 20px); }
+
+        /* Below-fold sections: skip rendering until scrolled near */
+        #section-pain-points, #section-solution, #section-cases, #s-pricing {
+            content-visibility: auto;
+            contain-intrinsic-size: 0 100vh;
+        }
 </style>
 </head>
-<body class="font-sans selection:bg-matrix-DEFAULT selection:text-black" style="overflow:hidden;">
-    <!-- Preloader -->
-    <div id="preloader">
-        <canvas id="matrix-rain"></canvas>
-        <svg class="preloader-spinner" viewBox="0 0 200 200" width="180" height="180">
-            <defs>
-                <path id="circlePath" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
-            </defs>
-            <text><textPath href="#circlePath">Content.ZVD  Content.ZVD  </textPath></text>
-        </svg>
-    </div>
-    <script>
-    (function(){
-        var c=document.getElementById('matrix-rain'),x=c.getContext('2d');
-        c.width=window.innerWidth;c.height=window.innerHeight;
-        var chars='アイウエオカキクケコ0123456789{}[]<>/;:=+*-_|~@#$%&()ABCDEFabcdef';
-        var fs=14,cols=Math.floor(c.width/fs),drops=[];
-        for(var i=0;i<cols;i++)drops[i]=Math.random()*c.height/fs|0;
-        var mi=setInterval(function(){
-            x.fillStyle='rgba(0,0,0,0.06)';x.fillRect(0,0,c.width,c.height);
-            x.font=fs+'px monospace';
-            for(var i=0;i<drops.length;i++){
-                var ch=chars[Math.random()*chars.length|0];
-                var g=155+Math.random()*100|0;
-                x.fillStyle='rgba(0,'+g+',30,'+(0.4+Math.random()*0.6).toFixed(2)+')';
-                x.fillText(ch,i*fs,drops[i]*fs);
-                if(drops[i]*fs>c.height&&Math.random()>0.975)drops[i]=0;
-                drops[i]++;
-            }
-        },33);
-        setTimeout(function(){
-            var p=document.getElementById('preloader');
-            p.style.transition='opacity 0.5s ease';
-            p.style.opacity='0';
-            document.body.style.overflow='';
-            setTimeout(function(){p.remove();clearInterval(mi);},500);
-        },2000);
-    })();
-    </script>
+<body class="font-sans selection:bg-matrix-DEFAULT selection:text-black">
+    <!-- Preloader - CSS-only fade -->
+    <div id="preloader"></div>
     <!-- Global Fixed Backgrounds -->
     <!-- SVG filter for liquid/plasma distortion -->
     <svg width="0" height="0" style="position:absolute">
         <filter id="plasma-distort">
-            <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="3" seed="3" result="noise">
-                <animate attributeName="seed" from="1" to="100" dur="60s" repeatCount="indefinite"/>
-            </feTurbulence>
+            <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="3" seed="3" result="noise"/>
             <feDisplacementMap in="SourceGraphic" in2="noise" scale="35" xChannelSelector="R" yChannelSelector="G"/>
         </filter>
     </svg>
@@ -839,8 +721,6 @@
         <div class="aurora-blob aurora-blob--1"></div>
         <div class="aurora-blob aurora-blob--2"></div>
         <div class="aurora-blob aurora-blob--3"></div>
-        <div class="aurora-blob aurora-blob--4"></div>
-        <div class="aurora-blob aurora-blob--5"></div>
     </div>
     <div class="fixed inset-0 vignette z-10 pointer-events-none"></div>
     <!-- Global Fixed Header -->
@@ -863,6 +743,9 @@
             <div class="absolute inset-0 flex justify-center items-center z-20 pointer-events-none">
                 <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/c7708832-5848-45e7-955a-de1301e8913a/1772474148679-e4856807/______________2026-03-02___19.42.12.png"
                      alt="Morpheus"
+                     fetchpriority="high"
+                     decoding="async"
+                     width="1000" height="1000"
                      class="w-full max-w-[1000px] h-full object-cover md:object-contain opacity-100 image-mask mix-blend-screen contrast-[1.4] saturate-[1.6] brightness-[1.15] filter drop-shadow-[0_0_15px_rgba(255,0,0,0.15)]">
             </div>
             <!-- Content Container -->
@@ -979,7 +862,7 @@
                     <div class="bg-number">01</div>
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="icon-container text-gray-400 mb-2 sm:mb-6">
-                            <iconify-icon icon="lucide:trending-down" width="48" height="48"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 17h6v-6" /><path d="m22 17-8.5-8.5-5 5L2 7" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
                             <span data-i18n="pain1_title">Висока вартість</span><br><span data-i18n="pain1_accent" class="text-neon-red">залучення клієнта</span>
@@ -995,7 +878,7 @@
                     <div class="bg-number">02</div>
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="icon-container text-gray-400 mb-2 sm:mb-6">
-                            <iconify-icon icon="lucide:coins" width="48" height="48"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.744 17.736a6 6 0 1 1-7.48-7.48" /><path d="M15 6h1v4" /><path d="m6.134 14.768.866-.5 2 3.464" /><circle cx="16" cy="8" r="6" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
                             <span data-i18n="pain2_title">Гроші витрачені,</span><br><span data-i18n="pain2_accent" class="text-neon-red">а вихлопу — нуль</span>
@@ -1011,7 +894,7 @@
                     <div class="bg-number">03</div>
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="icon-container text-gray-400 mb-2 sm:mb-6">
-                            <iconify-icon icon="lucide:lightbulb-off" width="48" height="48"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.8 11.2c.8-.9 1.2-2 1.2-3.2a6 6 0 0 0-9.3-5" /><path d="m2 2 20 20" /><path d="M6.3 6.3a4.67 4.67 0 0 0 1.2 5.2c.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
                             <span data-i18n="pain3_title">Про що знімати</span><br><span data-i18n="pain3_accent" class="text-neon-red">кожного дня?</span>
@@ -1027,7 +910,7 @@
                     <div class="bg-number">04</div>
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="icon-container text-gray-400 mb-2 sm:mb-6">
-                            <iconify-icon icon="lucide:clock-8" width="48" height="48"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l-4 2" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
                             <span data-i18n="pain4_title">Експерту важко</span><br><span data-i18n="pain4_accent" class="text-neon-red">виділити час</span>
@@ -1043,7 +926,7 @@
                     <div class="bg-number">05</div>
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="icon-container text-gray-400 mb-2 sm:mb-6">
-                            <iconify-icon icon="lucide:bot" width="48" height="48"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
                             <span data-i18n="pain5_title">«Сухий»</span><br><span data-i18n="pain5_accent" class="text-neon-red">корпоративний бренд</span>
@@ -1059,7 +942,7 @@
                     <div class="bg-number">06</div>
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="icon-container text-gray-400 mb-2 sm:mb-6">
-                            <iconify-icon icon="lucide:ghost" width="48" height="48"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 10h.01" /><path d="M15 10h.01" /><path d="M12 2a8 8 0 0 0-8 8v12l3-3 2.5 2.5L12 19l2.5 2.5L17 19l3 3V10a8 8 0 0 0-8-8z" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
                             <span data-i18n="pain6_title">Ефект</span><br><span data-i18n="pain6_accent" class="text-neon-red">«невидимки»</span>
@@ -1099,7 +982,7 @@
                     <div class="process-node section-animated-element rounded-xl p-8 pt-10" style="animation-delay: 0.4s;">
                         <div class="node-number">01</div>
                         <div class="mb-6 text-neon-blue animate-glow-pulse">
-                            <iconify-icon icon="lucide:radar" width="40" height="40"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34" /><path d="M4 6h.01" /><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35" /><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67" /><path d="M12 18h.01" /><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67" /><circle cx="12" cy="12" r="2" /><path d="m13.41 10.59 5.66-5.66" /></svg>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
                             <span data-i18n="sol_step1">Аналізуємо вірусні формати у вашій ніші</span>
@@ -1109,7 +992,7 @@
                     <div class="process-node section-animated-element rounded-xl p-8 pt-10" style="animation-delay: 0.5s;">
                         <div class="node-number">02</div>
                         <div class="mb-6 text-neon-blue animate-glow-pulse" style="animation-delay: 0.5s">
-                            <iconify-icon icon="lucide:pen-tool" width="40" height="40"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z" /><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18" /><path d="m2.3 2.3 7.286 7.286" /><circle cx="11" cy="11" r="2" /></svg>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
                             <span data-i18n="sol_step2">Створюємо сценарії, що утримують увагу</span>
@@ -1119,7 +1002,7 @@
                     <div class="process-node section-animated-element rounded-xl p-8 pt-10" style="animation-delay: 0.6s;">
                         <div class="node-number">03</div>
                         <div class="mb-6 text-neon-blue animate-glow-pulse" style="animation-delay: 1s">
-                            <iconify-icon icon="lucide:scissors" width="40" height="40"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3" /><path d="M8.12 8.12 12 12" /><path d="M20 4 8.12 15.88" /><circle cx="6" cy="18" r="3" /><path d="M14.8 14.8 20 20" /></svg>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
                             <span data-i18n="sol_step3">Монтуємо відповідно до алгоритмів</span>
@@ -1132,7 +1015,7 @@
                     <div class="process-node section-animated-element rounded-xl p-8 pt-10 w-full md:w-[calc(33.333%-1rem)]" style="animation-delay: 0.7s;">
                         <div class="node-number">04</div>
                         <div class="mb-6 text-neon-blue animate-glow-pulse" style="animation-delay: 1.5s">
-                            <iconify-icon icon="lucide:sliders-horizontal" width="40" height="40"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
                             <span data-i18n="sol_step4">Адаптуємо відео під ваш бренд</span>
@@ -1142,7 +1025,7 @@
                     <div class="process-node section-animated-element rounded-xl p-8 pt-10 w-full md:w-[calc(33.333%-1rem)]" style="animation-delay: 0.8s;">
                         <div class="node-number">05</div>
                         <div class="mb-6 text-neon-blue animate-glow-pulse" style="animation-delay: 2s">
-                            <iconify-icon icon="lucide:rocket" width="40" height="40"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09" /><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05" /></svg>
                         </div>
                         <p class="text-lg md:text-xl font-bold text-white leading-snug">
                             <span data-i18n="sol_step5">Публікуємо або передаємо готові відео</span>
@@ -1162,7 +1045,7 @@
                     <div class="benefit-card section-animated-element rounded-xl p-8 flex flex-col items-center text-center group" style="animation-delay: 1.2s;">
                         <div class="benefit-holo-sweep"></div>
                         <div class="w-16 h-16 rounded-full bg-matrix-dark/30 border border-matrix-DEFAULT/40 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(0,255,65,0.2)]">
-                            <iconify-icon icon="lucide:trending-up" width="32" height="32" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"><path d="M16 7h6v6" /><path d="m22 7-8.5 8.5-5-5L2 17" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-matrix-DEFAULT tracking-tight mb-3">
                             <span data-i18n="sol_b1_title">Зростання всіх охоплень</span>
@@ -1175,7 +1058,7 @@
                     <div class="benefit-card section-animated-element rounded-xl p-8 flex flex-col items-center text-center group" style="animation-delay: 1.3s;">
                         <div class="benefit-holo-sweep"></div>
                         <div class="w-16 h-16 rounded-full bg-matrix-dark/30 border border-matrix-DEFAULT/40 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(0,255,65,0.2)]">
-                            <iconify-icon icon="lucide:layers" width="32" height="32" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-matrix-DEFAULT tracking-tight mb-3">
                             <span data-i18n="sol_b2_title">Інтеграцію продукту у віральний контент</span>
@@ -1188,7 +1071,7 @@
                     <div class="benefit-card section-animated-element rounded-xl p-8 flex flex-col items-center text-center group" style="animation-delay: 1.4s;">
                         <div class="benefit-holo-sweep"></div>
                         <div class="w-16 h-16 rounded-full bg-matrix-dark/30 border border-matrix-DEFAULT/40 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(0,255,65,0.2)]">
-                            <iconify-icon icon="lucide:users" width="32" height="32" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT drop-shadow-[0_0_8px_rgba(0,255,65,0.8)]"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><path d="M16 3.128a4 4 0 0 1 0 7.744" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><circle cx="9" cy="7" r="4" /></svg>
                         </div>
                         <h4 class="text-xl md:text-2xl font-bold text-matrix-DEFAULT tracking-tight mb-3">
                             <span data-i18n="sol_b3_title">Активну залучену аудиторію</span>
@@ -1243,7 +1126,7 @@
                             </div>
                             <!-- ARROW -->
                             <div class="case-arrow flex-shrink-0">
-                                <iconify-icon icon="lucide:arrow-right" width="28" height="28"></iconify-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                             </div>
                             <!-- AFTER -->
                             <div class="flex-1 text-center">
@@ -1281,7 +1164,7 @@
                             </div>
                             <!-- ARROW -->
                             <div class="case-arrow flex-shrink-0">
-                                <iconify-icon icon="lucide:arrow-right" width="28" height="28"></iconify-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                             </div>
                             <!-- AFTER -->
                             <div class="flex-1 text-center">
@@ -1319,7 +1202,7 @@
                             </div>
                             <!-- ARROW -->
                             <div class="case-arrow flex-shrink-0">
-                                <iconify-icon icon="lucide:arrow-right" width="28" height="28"></iconify-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                             </div>
                             <!-- AFTER -->
                             <div class="flex-1 text-center">
@@ -1342,7 +1225,7 @@
                 <div class="section-animated-element grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 max-w-4xl mx-auto" style="animation-delay: 0.85s;">
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-lg bg-matrix-dark/30 border border-matrix-DEFAULT/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <iconify-icon icon="lucide:flame" width="20" height="20" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" /></svg>
                         </div>
                         <div>
                             <p class="text-white font-bold text-sm md:text-base"><span data-i18n="cases_fact1">Відео набирають десятки та сотні тисяч переглядів</span></p>
@@ -1350,7 +1233,7 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-lg bg-matrix-dark/30 border border-matrix-DEFAULT/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <iconify-icon icon="lucide:rocket" width="20" height="20" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09" /><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05" /></svg>
                         </div>
                         <div>
                             <p class="text-white font-bold text-sm md:text-base"><span data-i18n="cases_fact2">Алгоритм починає активно просувати сторінки</span></p>
@@ -1358,7 +1241,7 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-lg bg-matrix-dark/30 border border-matrix-DEFAULT/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <iconify-icon icon="lucide:star" width="20" height="20" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
                         </div>
                         <div>
                             <p class="text-white font-bold text-sm md:text-base"><span data-i18n="cases_fact3">Зростає впізнаваність бренду</span></p>
@@ -1366,7 +1249,7 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-lg bg-matrix-dark/30 border border-matrix-DEFAULT/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <iconify-icon icon="lucide:users-round" width="20" height="20" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT drop-shadow-[0_0_6px_rgba(0,255,65,0.7)]"><path d="M18 21a8 8 0 0 0-16 0" /><circle cx="10" cy="8" r="5" /><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" /></svg>
                         </div>
                         <div>
                             <p class="text-white font-bold text-sm md:text-base"><span data-i18n="cases_fact4">З'являється нова аудиторія без реклами</span></p>
@@ -1377,7 +1260,7 @@
                 <!-- Virality Note -->
                 <div class="section-animated-element text-center mt-10" style="animation-delay: 1.0s;">
                     <div class="inline-flex items-center gap-3 px-6 py-3 bg-matrix-dark/20 border border-matrix-DEFAULT/20 rounded-xl backdrop-blur-md">
-                        <iconify-icon icon="lucide:repeat-2" width="22" height="22" class="text-neon-blue drop-shadow-[0_0_6px_rgba(0,240,255,0.7)]"></iconify-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neon-blue drop-shadow-[0_0_6px_rgba(0,240,255,0.7)]"><path d="m2 9 3-3 3 3" /><path d="M13 18H7a2 2 0 0 1-2-2V6" /><path d="m22 15-3 3-3-3" /><path d="M11 6h6a2 2 0 0 1 2 2v10" /></svg>
                         <span class="text-sm md:text-base text-gray-300 font-medium">
                             <span data-i18n="cases_virality" class="text-neon-blue font-bold text-glow-blue">Віральність</span> <span data-i18n="cases_virality_text">= повторні перегляди + утримання уваги</span>
                         </span>
@@ -1392,7 +1275,7 @@
                         <div class="btn-holo-grain"></div>
                         <div class="cursor-glow"></div>
                         <span class="relative z-10 flex items-center gap-3 px-8 py-4 text-white font-bold text-base md:text-lg tracking-wide">
-                            <iconify-icon icon="lucide:send" width="20" height="20"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /><path d="m21.854 2.147-10.94 10.939" /></svg>
                             <span data-i18n="cases_cta">Залишити заявку</span>
                         </span>
                     </button>
@@ -1433,31 +1316,31 @@
                     <!-- Included -->
                     <div class="space-y-1 mb-5">
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M20 6 9 17l-5-5" /></svg>
                             <span data-i18n="pkg_f1" class="text-white/80">3–5 Reels щодня (кількість затверджуємо з клієнтом)</span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M20 6 9 17l-5-5" /></svg>
                             <span data-i18n="pkg_f2" class="text-white/80">Клієнт обирає теми — ми шукаємо відео та монтуємо під ключ</span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M20 6 9 17l-5-5" /></svg>
                             <span data-i18n="pkg_f3" class="text-white/80">Клієнт записує реакції або дає відео продукту (можна і те, і те)</span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M20 6 9 17l-5-5" /></svg>
                             <span data-i18n="pkg_f4" class="text-white/80">Додаємо офери на відео, якщо потрібно</span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M20 6 9 17l-5-5" /></svg>
                             <span data-i18n="pkg_f5" class="text-white/80">Підбір актуальних форматів</span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M20 6 9 17l-5-5" /></svg>
                             <span data-i18n="pkg_f6" class="text-white/80">Можемо замість клієнта викладати контент</span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:check" class="icon-check"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M20 6 9 17l-5-5" /></svg>
                             <span data-i18n="pkg_f7" class="text-white/80">Повна прозора аналітика контенту</span>
                         </div>
                     </div>
@@ -1465,15 +1348,15 @@
                     <!-- Not Included -->
                     <div class="space-y-1 mb-6 pt-4 border-t border-white/5">
                         <div class="pkg-feature pkg-feature--disabled">
-                            <iconify-icon icon="lucide:x" class="icon-x"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
                             <span data-i18n="pkg_nf1">Стратегічна сесія та інтеграція продукту</span>
                         </div>
                         <div class="pkg-feature pkg-feature--disabled">
-                            <iconify-icon icon="lucide:x" class="icon-x"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
                             <span data-i18n="pkg_nf2">Персональний проджект-менеджер</span>
                         </div>
                         <div class="pkg-feature pkg-feature--disabled">
-                            <iconify-icon icon="lucide:x" class="icon-x"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
                             <span data-i18n="pkg_nf3">Контент під вузьку нішу діяльності</span>
                         </div>
                     </div>
@@ -1503,27 +1386,27 @@
                     <!-- Included -->
                     <div class="space-y-1 mb-6">
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
                             <span data-i18n="pkg_ef1" class="text-white/80">Все з Профі — 3–5 Reels, монтаж, публікація, аналітика</span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
                             <span class="text-white/80"><span data-i18n="pkg_ef2">Стратегічна сесія — будуємо план інтеграції продукту клієнта в кожне відео</span> <span data-i18n="pkg_expert_only" class="badge-expert-only">Тільки Експерт</span></span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
                             <span class="text-white/80"><span data-i18n="pkg_ef3">Контент під вузьку нішу — адвокат? Шукаємо відео про сімейні справи. Фітнес-тренер? Контент про спортзал та вагу</span> <span data-i18n="pkg_expert_only" class="badge-expert-only">Тільки Експерт</span></span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
                             <span class="text-white/80"><span data-i18n="pkg_ef4">Персональний проджект-менеджер — контролює всю роботу, реалізує корективи миттєво</span> <span data-i18n="pkg_expert_only" class="badge-expert-only">Тільки Експерт</span></span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
                             <span data-i18n="pkg_ef5" class="text-white/80">Інтеграція продукту та оферів стратегічно в контент</span>
                         </div>
                         <div class="pkg-feature">
-                            <iconify-icon icon="lucide:star" class="icon-star"></iconify-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
                             <span data-i18n="pkg_ef6" class="text-white/80">Пріоритетна черга на правки</span>
                         </div>
                     </div>
@@ -1619,17 +1502,17 @@
         <h2 class="section-animated-element text-3xl md:text-5xl font-black text-white text-center tracking-tight mb-4" data-i18n="faq_title">У нас часто запитують</h2>
         <p class="section-animated-element text-gray-400 text-center text-sm md:text-base mb-12 max-w-xl" data-i18n="faq_desc">Відповіді на найпоширеніші питання</p>
         <div class="section-animated-element w-full max-w-3xl flex flex-col gap-3">
-            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq1_q">Чи потрібно вміти знімати відео?</span><iconify-icon class="faq-chevron" icon="lucide:chevron-down"></iconify-icon></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq1_a">Ні. Ми даємо прості інструкції та приклади. Достатньо телефону та світлого приміщення.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq2_q">Скільки часу займає зйомка?</span><iconify-icon class="faq-chevron" icon="lucide:chevron-down"></iconify-icon></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq2_a">10–20 хвилин на запис реакцій.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq3_q">Чи потрібно давати доступ до сторінки?</span><iconify-icon class="faq-chevron" icon="lucide:chevron-down"></iconify-icon></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq3_a">На ваш вибір. Ви можете публікувати відео самостійно, доступ залишається тільки у вас, або надати нам для ведення профілю «під ключ». Все конфіденційно.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq4_q">Коли будуть результати?</span><iconify-icon class="faq-chevron" icon="lucide:chevron-down"></iconify-icon></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq4_a">Перші віральні відео можуть "зайти" вже в перші дні. Стабільний ріст — протягом місяця.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq5_q">Це підходить тільки блогерам?</span><iconify-icon class="faq-chevron" icon="lucide:chevron-down"></iconify-icon></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq5_a">Ні. Працює для бізнесу, експертів та брендів.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq6_q">Ці відео будуть мати відношення до мого продукту?</span><iconify-icon class="faq-chevron" icon="lucide:chevron-down"></iconify-icon></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq6_a">Ми робимо відео, які напряму або дотично будуть пов'язані з вашою сторінкою. Всі теми і матеріали затверджуються з вами.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq1_q">Чи потрібно вміти знімати відео?</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-chevron"><path d="m6 9 6 6 6-6" /></svg></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq1_a">Ні. Ми даємо прості інструкції та приклади. Достатньо телефону та світлого приміщення.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq2_q">Скільки часу займає зйомка?</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-chevron"><path d="m6 9 6 6 6-6" /></svg></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq2_a">10–20 хвилин на запис реакцій.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq3_q">Чи потрібно давати доступ до сторінки?</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-chevron"><path d="m6 9 6 6 6-6" /></svg></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq3_a">На ваш вибір. Ви можете публікувати відео самостійно, доступ залишається тільки у вас, або надати нам для ведення профілю «під ключ». Все конфіденційно.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq4_q">Коли будуть результати?</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-chevron"><path d="m6 9 6 6 6-6" /></svg></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq4_a">Перші віральні відео можуть "зайти" вже в перші дні. Стабільний ріст — протягом місяця.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq5_q">Це підходить тільки блогерам?</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-chevron"><path d="m6 9 6 6 6-6" /></svg></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq5_a">Ні. Працює для бізнесу, експертів та брендів.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><span class="text-sm md:text-base font-bold text-white" data-i18n="faq6_q">Ці відео будуть мати відношення до мого продукту?</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-chevron"><path d="m6 9 6 6 6-6" /></svg></div><div class="faq-answer"><p class="text-sm text-gray-400 leading-relaxed" data-i18n="faq6_a">Ми робимо відео, які напряму або дотично будуть пов'язані з вашою сторінкою. Всі теми і матеріали затверджуються з вами.</p></div></div>
         </div>
         <div class="section-animated-element w-full max-w-3xl mt-12 text-center">
             <p class="text-lg md:text-xl font-bold text-white mb-2" data-i18n="faq_other_q">Маєте інше запитання?</p>
             <p class="text-sm text-gray-400 mb-8 max-w-lg mx-auto leading-relaxed" data-i18n="faq_other_text">Якщо щось залишилося незрозумілим, або виникли труднощі з оплатою – залиште заявку і наша Служба Турботи допоможе якнайшвидше знайти відповідь на ваше запитання.</p>
-            <button onclick="document.getElementById('booking-modal')?.classList.remove('hidden')" class="inline-flex items-center gap-2 px-8 py-4 bg-[#1a6b1a] text-black font-black text-sm tracking-wider uppercase rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,65,0.3)] hover:brightness-110"><iconify-icon icon="lucide:headphones" width="18"></iconify-icon><span data-i18n="faq_other_btn">Зв'яжіться зі мною!</span></button>
+            <button onclick="document.getElementById('booking-modal')?.classList.remove('hidden')" class="inline-flex items-center gap-2 px-8 py-4 bg-[#1a6b1a] text-black font-black text-sm tracking-wider uppercase rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,65,0.3)] hover:brightness-110"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3" /></svg><span data-i18n="faq_other_btn">Зв'яжіться зі мною!</span></button>
         </div>
     </section>
 </main>
@@ -1642,7 +1525,7 @@
         <div class="relative w-full max-w-md bg-white/[0.05] border border-white/10 rounded-2xl p-8 shadow-[0_0_60px_rgba(0,200,60,0.08)] backdrop-blur-2xl transform transition-all duration-300 scale-95 opacity-0" id="modal-card">
             <!-- Close Button -->
             <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-500 hover:text-white transition-colors">
-                <iconify-icon icon="lucide:x" width="20" height="20"></iconify-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
             </button>
             <!-- Header -->
             <div class="mb-6 text-center">
@@ -1671,7 +1554,7 @@
                 <div>
                     <label for="field-name" class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-2" data-i18n="modal_label_name">Ім'я *</label>
                     <div class="relative">
-                        <iconify-icon icon="lucide:user" width="18" height="18" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></iconify-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                         <input type="text" id="field-name" name="name" required data-i18n-ph="modal_ph_name" placeholder="Ваше ім'я"
                             class="w-full bg-black/60 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm placeholder-gray-600 outline-none focus:border-matrix-DEFAULT/60 focus:shadow-[0_0_15px_rgba(0,255,65,0.1)] transition-all duration-300">
                     </div>
@@ -1680,7 +1563,7 @@
                 <div>
                     <label for="field-phone" class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-2" data-i18n="modal_label_phone">Телефон *</label>
                     <div class="relative">
-                        <iconify-icon icon="lucide:phone" width="18" height="18" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></iconify-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>
                         <input type="tel" id="field-phone" name="phone" required data-i18n-ph="modal_ph_phone" placeholder="+380 ..."
                             class="w-full bg-black/60 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm placeholder-gray-600 outline-none focus:border-matrix-DEFAULT/60 focus:shadow-[0_0_15px_rgba(0,255,65,0.1)] transition-all duration-300">
                     </div>
@@ -1689,7 +1572,7 @@
                 <div>
                     <label for="field-instagram" class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-2" data-i18n="modal_label_ig">Instagram *</label>
                     <div class="relative">
-                        <iconify-icon icon="mdi:instagram" width="18" height="18" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></iconify-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg>
                         <input type="text" id="field-instagram" name="instagram" required data-i18n-ph="modal_ph_ig" placeholder="@username"
                             class="w-full bg-black/60 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white text-sm placeholder-gray-600 outline-none focus:border-matrix-DEFAULT/60 focus:shadow-[0_0_15px_rgba(0,255,65,0.1)] transition-all duration-300">
                     </div>
@@ -2059,17 +1942,17 @@
                 <div>
                     <h4 class="text-xs uppercase tracking-[0.2em] text-matrix-DEFAULT font-bold mb-4" data-i18n="footer_contacts">Контакти</h4>
                     <div class="flex flex-col gap-3">
-                        <div class="flex items-center gap-2 text-sm text-gray-400"><iconify-icon icon="lucide:mail" width="16" class="text-matrix-DEFAULT/60"></iconify-icon>hello@content-zvd.com</div>
-                        <div class="flex items-center gap-2 text-sm text-gray-400"><iconify-icon icon="lucide:phone" width="16" class="text-matrix-DEFAULT/60"></iconify-icon>+380 __ ___ __ __</div>
-                        <div class="flex items-center gap-2 text-sm text-gray-400"><iconify-icon icon="lucide:building-2" width="16" class="text-matrix-DEFAULT/60"></iconify-icon>ФОП _____</div>
+                        <div class="flex items-center gap-2 text-sm text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT/60"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg>hello@content-zvd.com</div>
+                        <div class="flex items-center gap-2 text-sm text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT/60"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>+380 __ ___ __ __</div>
+                        <div class="flex items-center gap-2 text-sm text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-matrix-DEFAULT/60"><path d="M10 12h4" /><path d="M10 8h4" /><path d="M14 21v-3a2 2 0 0 0-4 0v3" /><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></svg>ФОП _____</div>
                     </div>
                 </div>
                 <div>
                     <h4 class="text-xs uppercase tracking-[0.2em] text-matrix-DEFAULT font-bold mb-4" data-i18n="footer_social">Соціальні мережі</h4>
                     <div class="flex gap-3">
-                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-matrix-DEFAULT hover:border-matrix-DEFAULT/30 transition-all"><iconify-icon icon="mdi:instagram" width="20"></iconify-icon></a>
-                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-matrix-DEFAULT hover:border-matrix-DEFAULT/30 transition-all"><iconify-icon icon="mdi:facebook" width="20"></iconify-icon></a>
-                        <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-matrix-DEFAULT hover:border-matrix-DEFAULT/30 transition-all"><iconify-icon icon="mdi:youtube" width="20"></iconify-icon></a>
+                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-matrix-DEFAULT hover:border-matrix-DEFAULT/30 transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a>
+                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-matrix-DEFAULT hover:border-matrix-DEFAULT/30 transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" /></svg></a>
+                        <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-matrix-DEFAULT hover:border-matrix-DEFAULT/30 transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" /></svg></a>
                     </div>
                 </div>
             </div>
