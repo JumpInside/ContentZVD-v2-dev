@@ -117,8 +117,7 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none;
-            /* DEBUG: temporarily removed mix-blend-mode so red ellipses are visible */
-            /* mix-blend-mode: screen; */
+            mix-blend-mode: screen;
             opacity: 1;
         }
         @media (prefers-reduced-motion: reduce) {
@@ -1640,94 +1639,39 @@
             }
             setTimeout(typeWriterHero, 2600);
 
-            // --- 3b. Matrix Rain on Morpheus Glasses ---
+            // --- 3b. Matrix Rain Background Effect ---
             (function initMatrixRain() {
                 const canvas = document.getElementById('matrix-rain-canvas');
                 if (!canvas) return;
                 const ctx = canvas.getContext('2d');
-                const img = canvas.parentElement.querySelector('img');
-                if (!img) return;
-
-                // Lens positions in normalized coordinates (0–1) relative to rendered image
-                // Calibration iteration 3 based on manual pixel measurements (viewport 1439×730)
-                const LENS_CONFIG = [
-                    { cx: 0.469, cy: 0.141, rx: 0.043, ry: 0.021 },    // left lens
-                    { cx: 0.580, cy: 0.140, rx: 0.048, ry: 0.023 }     // right lens
-                ];
 
                 const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
                 const FPS = 15;
                 const FRAME_INTERVAL = 1000 / FPS;
-                let lenses = [];
+                let columns = [];
                 let animId = null;
                 let lastTime = 0;
-                let fontSize = 10;
+                let fontSize = 14;
 
                 function buildColumns() {
                     const container = canvas.parentElement;
                     const dpr = window.devicePixelRatio || 1;
-                    const contW = container.clientWidth, contH = container.clientHeight;
-                    canvas.width = contW * dpr;
-                    canvas.height = contH * dpr;
+                    const w = container.clientWidth, h = container.clientHeight;
+                    canvas.width = w * dpr;
+                    canvas.height = h * dpr;
                     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-                    // Get actual image element position within the container
-                    const contRect = container.getBoundingClientRect();
-                    const imgRect = img.getBoundingClientRect();
-                    const imgLeft = imgRect.left - contRect.left;
-                    const imgTop = imgRect.top - contRect.top;
-                    const imgW = imgRect.width;
-                    const imgH = imgRect.height;
-
-                    // Calculate object-fit rendered size within the img element
-                    const nW = img.naturalWidth || 1000, nH = img.naturalHeight || 1000;
-                    const isMd = window.matchMedia('(min-width: 768px)').matches;
-                    const fit = isMd ? 'contain' : 'cover';
-                    const cR = imgW / imgH, iR = nW / nH;
-                    let rW, rH;
-                    if (fit === 'contain') {
-                        if (cR > iR) { rH = imgH; rW = imgH * iR; }
-                        else { rW = imgW; rH = imgW / iR; }
-                    } else {
-                        if (cR > iR) { rW = imgW; rH = imgW / iR; }
-                        else { rH = imgH; rW = imgH * iR; }
-                    }
-                    // Object-fit offset within the img element
-                    const objOffX = (imgW - rW) / 2;
-                    const objOffY = (imgH - rH) / 2;
-
-                    // Base: img position in container + object-fit offset
-                    const baseX = imgLeft + objOffX;
-                    const baseY = imgTop + objOffY;
-
-                    fontSize = Math.max(6, rW * 0.008);
-                    lenses = [];
-
-                    for (const lens of LENS_CONFIG) {
-                        const cx = baseX + lens.cx * rW;
-                        const cy = baseY + lens.cy * rH;
-                        const rx = lens.rx * rW;
-                        const ry = lens.ry * rH;
-                        const cols = [];
-                        const colW = fontSize * 0.7;
-                        for (let x = cx - rx; x < cx + rx; x += colW) {
-                            const dx = (x - cx) / rx;
-                            if (Math.abs(dx) > 1) continue;
-                            const yExt = ry * Math.sqrt(1 - dx * dx);
-                            cols.push({
-                                x: x,
-                                topY: cy - yExt,
-                                bottomY: cy + yExt,
-                                currentY: cy - yExt + Math.random() * yExt * 2,
-                                speed: 0.3 + Math.random() * 1.0
-                            });
-                        }
-                        lenses.push({ cx, cy, rx, ry, columns: cols });
+                    fontSize = Math.max(10, Math.min(16, w * 0.01));
+                    const colW = fontSize * 0.7;
+                    columns = [];
+                    for (let x = 0; x < w; x += colW) {
+                        columns.push({
+                            x: x,
+                            currentY: Math.random() * h,
+                            speed: 0.3 + Math.random() * 1.2
+                        });
                     }
                 }
-
-                // DEBUG MODE: set to true to show red ellipse outlines instead of rain
-                const DEBUG_LENSES = true;
 
                 function draw(timestamp) {
                     animId = requestAnimationFrame(draw);
@@ -1737,57 +1681,28 @@
                     const dpr = window.devicePixelRatio || 1;
                     const w = canvas.width / dpr, h = canvas.height / dpr;
 
-                    if (DEBUG_LENSES) {
-                        ctx.clearRect(0, 0, w, h);
-                        for (const lens of lenses) {
-                            ctx.save();
-                            ctx.beginPath();
-                            ctx.ellipse(lens.cx, lens.cy, lens.rx, lens.ry, 0, 0, Math.PI * 2);
-                            ctx.strokeStyle = 'red';
-                            ctx.lineWidth = 3;
-                            ctx.stroke();
-                            // Draw center crosshair
-                            ctx.beginPath();
-                            ctx.moveTo(lens.cx - 5, lens.cy);
-                            ctx.lineTo(lens.cx + 5, lens.cy);
-                            ctx.moveTo(lens.cx, lens.cy - 5);
-                            ctx.lineTo(lens.cx, lens.cy + 5);
-                            ctx.strokeStyle = 'yellow';
-                            ctx.lineWidth = 2;
-                            ctx.stroke();
-                            ctx.restore();
-                        }
-                        return;
-                    }
-
                     // Trail fade
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
                     ctx.fillRect(0, 0, w, h);
 
                     ctx.font = fontSize + 'px monospace';
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'top';
 
-                    for (const lens of lenses) {
-                        ctx.save();
-                        ctx.beginPath();
-                        ctx.ellipse(lens.cx, lens.cy, lens.rx, lens.ry, 0, 0, Math.PI * 2);
-                        ctx.clip();
+                    for (const col of columns) {
+                        // Bright leading character
+                        const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
+                        ctx.fillStyle = '#ccffcc';
+                        ctx.fillText(ch, col.x, col.currentY);
+                        // Dimmer trail character
+                        ctx.fillStyle = 'rgba(0, 255, 65, 0.6)';
+                        ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], col.x, col.currentY - fontSize);
 
-                        for (const col of lens.columns) {
-                            const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
-                            ctx.fillStyle = '#ccffcc';
-                            ctx.fillText(ch, col.x, col.currentY);
-                            ctx.fillStyle = 'rgba(0, 255, 65, 0.7)';
-                            ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], col.x, col.currentY - fontSize);
-
-                            col.currentY += fontSize * col.speed;
-                            if (col.currentY > col.bottomY) {
-                                col.currentY = col.topY;
-                                col.speed = 0.3 + Math.random() * 1.0;
-                            }
+                        col.currentY += fontSize * col.speed;
+                        if (col.currentY > h) {
+                            col.currentY = -fontSize;
+                            col.speed = 0.3 + Math.random() * 1.2;
                         }
-                        ctx.restore();
                     }
                 }
 
@@ -1808,48 +1723,6 @@
                 }, { threshold: 0.05 });
                 observer.observe(heroSection);
 
-                // DEBUG: Click on image to get normalized coordinates (on-screen overlay)
-                // Remove this block after calibration
-                img.style.pointerEvents = 'auto';
-                img.style.cursor = 'crosshair';
-                const debugClicks = [];
-                let debugOverlay = document.createElement('div');
-                debugOverlay.id = 'lens-debug-overlay';
-                debugOverlay.style.cssText = 'position:fixed;top:10px;left:10px;z-index:99999;background:rgba(0,0,0,0.9);color:#00ff41;font-family:monospace;font-size:14px;padding:12px 16px;border-radius:8px;border:1px solid #00ff41;max-width:500px;pointer-events:none;';
-                debugOverlay.innerHTML = '<b>LENS DEBUG</b><br>Click center of LEFT lens, then RIGHT lens';
-                document.body.appendChild(debugOverlay);
-                img.addEventListener('click', function(e) {
-                    const imgRect = img.getBoundingClientRect();
-                    const imgW = imgRect.width, imgH = imgRect.height;
-                    const nW = img.naturalWidth || 1000, nH = img.naturalHeight || 1000;
-                    const isMd = window.matchMedia('(min-width: 768px)').matches;
-                    const fit = isMd ? 'contain' : 'cover';
-                    const cR = imgW / imgH, iR = nW / nH;
-                    let rW, rH;
-                    if (fit === 'contain') {
-                        if (cR > iR) { rH = imgH; rW = imgH * iR; } else { rW = imgW; rH = imgW / iR; }
-                    } else {
-                        if (cR > iR) { rW = imgW; rH = imgW / iR; } else { rH = imgH; rW = imgH * iR; }
-                    }
-                    const objOffX = (imgW - rW) / 2, objOffY = (imgH - rH) / 2;
-                    const clickX = e.clientX - imgRect.left;
-                    const clickY = e.clientY - imgRect.top;
-                    const normX = ((clickX - objOffX) / rW).toFixed(4);
-                    const normY = ((clickY - objOffY) / rH).toFixed(4);
-                    debugClicks.push({ normX, normY, px: `${clickX.toFixed(0)},${clickY.toFixed(0)}` });
-                    let html = `<b>LENS DEBUG</b> (rW=${rW.toFixed(0)} rH=${rH.toFixed(0)} fit=${fit})<br>`;
-                    debugClicks.forEach((c, i) => {
-                        html += `<span style="color:${i===0?'#ff4444':'#44ff44'}">${i===0?'LEFT':'RIGHT'}: normX=${c.normX} normY=${c.normY} (px:${c.px})</span><br>`;
-                    });
-                    if (debugClicks.length >= 2) {
-                        html += '<br><b style="color:yellow">Both lenses captured! Screenshot this overlay.</b>';
-                    } else {
-                        html += '<br>Now click center of RIGHT lens';
-                    }
-                    debugOverlay.innerHTML = html;
-                });
-                // END DEBUG
-
                 // Resize handling
                 let resizeTimer;
                 window.addEventListener('resize', () => {
@@ -1860,8 +1733,7 @@
                 });
 
                 // Init
-                if (img.complete) start();
-                else img.addEventListener('load', start);
+                start();
             })();
 
             // --- 4. Value Proposition - Timer & Holo Button ---
